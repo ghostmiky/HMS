@@ -7,6 +7,7 @@ package Interfaces;
 
 
 import com.mysql.jdbc.Connection;
+import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
+import prtype.validations;
 
 import prtype.DBconnection;
 
@@ -25,10 +27,12 @@ public class Cater extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
+    
     public Cater() {
         initComponents();
         con = DBconnection.connect();
         tableload();
+        
         
     }
     
@@ -93,6 +97,12 @@ public class Cater extends javax.swing.JFrame {
 
         jLabel1.setText("Order ID");
 
+        CustomerName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CustomerNameKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Customer Name");
 
         jLabel3.setText("Contact Number");
@@ -106,6 +116,24 @@ public class Cater extends javax.swing.JFrame {
         jLabel8.setText("Payment Status");
 
         jLabel9.setText("Description");
+
+        ContactNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ContactNumberKeyTyped(evt);
+            }
+        });
+
+        NumberOfGuests.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NumberOfGuestsKeyTyped(evt);
+            }
+        });
+
+        Deposit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                DepositKeyTyped(evt);
+            }
+        });
 
         DueDate.setDateFormatString("yyyy-MM-dd");
 
@@ -152,6 +180,11 @@ public class Cater extends javax.swing.JFrame {
         });
 
         jButton3.setText("Search Order");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Update Order");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -305,22 +338,35 @@ public class Cater extends javax.swing.JFrame {
                 String address = Address.getText();
                 String description = Description.getText();
                 double deposit = Double.parseDouble(Deposit.getText());
-                
                 String strdue = ((JTextField)DueDate.getDateEditor().getUiComponent()).getText();
                 String ps = PaymentStatus.getSelectedItem().toString();
                 
-               System.out.println(name);
+                String cnum = Integer.toString(cnumber);
+                String n = Integer.toString(nog);
+                String dep = Double.toString(deposit);
+                
+                validations v1 = new validations();
+                boolean vname = v1.vcus(name);
+                boolean vnum = v1.vcus(cnum);
+                boolean c = v1.vcus(n);
+                boolean d = v1.vcus(address);
+                boolean e = v1.vcus(description);
+                boolean f = v1.vcus(dep);
+                boolean g = v1.vcus(strdue);
+                boolean h = v1.vcus(ps);
+                
+               /*System.out.println(name);
                 System.out.println(cnumber);
                 System.out.println(nog);
                 System.out.println(address);
                 System.out.println(description);
                 System.out.println(deposit);
                 System.out.println(strdue);
-                System.out.println(ps);
+                System.out.println(ps);*/
                 
                 
         
-        
+        if(vname == true && vnum == true && c == true && d == true && e == true && f == true && g == true && h == true  ){
         try {
             String Sq = "INSERT INTO Corder (CustomerName,ContactNumber,NumberOfGuests,Address,Description,Deposit,Due,PaymentStatus) VALUES ('"+ name +"','"+ cnumber +"','"+ nog +"','"+ address +"','"+ description +"','"+ deposit +"','"+ strdue +"','"+ ps +"')";
             pst=con.prepareStatement(Sq);
@@ -338,6 +384,15 @@ public class Cater extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex);
             
+        }}else{
+             CustomerName.setText("");
+            ContactNumber.setText("");
+            NumberOfGuests.setText("");
+            Address.setText("");
+            Description.setText("");
+            Deposit.setText("");
+            DueDate.setToolTipText("");
+            PaymentStatus.setToolTipText("");
         }
         
                 
@@ -427,6 +482,59 @@ public class Cater extends javax.swing.JFrame {
           }
        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       String cont = ContactNumber.getText();
+        String sl = "SELECT * FROM corder WHERE ContactNumber = '"+ cont +"'";
+        try {
+            pst = con.prepareStatement(sl);
+            rs = pst.executeQuery();
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Cater.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void ContactNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContactNumberKeyTyped
+        char a = evt.getKeyChar();
+        
+        if(!(Character.isDigit(a) || a == KeyEvent.VK_BACK_SPACE)){
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_ContactNumberKeyTyped
+
+    private void CustomerNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustomerNameKeyTyped
+       char b = evt.getKeyChar();
+       
+       if(!(Character.isLetter(b) || b == KeyEvent.VK_BACK_SPACE )){
+           getToolkit().beep();
+           evt.consume();
+       }
+    }//GEN-LAST:event_CustomerNameKeyTyped
+
+    private void NumberOfGuestsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumberOfGuestsKeyTyped
+       char c = evt.getKeyChar();
+       
+       if(!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE)){
+           getToolkit().beep();
+           evt.consume();
+       }
+    }//GEN-LAST:event_NumberOfGuestsKeyTyped
+
+    private void DepositKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DepositKeyTyped
+        char d = evt.getKeyChar();
+        
+        if(!(Character.isDigit(d) || d == KeyEvent.VK_BACK_SPACE)){
+            getToolkit().beep();
+            evt.consume();
+            
+        }
+    }//GEN-LAST:event_DepositKeyTyped
 
     /**
      * @param args the command line arguments

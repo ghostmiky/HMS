@@ -350,13 +350,11 @@
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jTextField1" pref="171" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cost" alignment="0" pref="171" max="32767" attributes="0"/>
-                                      <Component id="jButton10" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="Datec" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cost" alignment="0" pref="171" max="32767" attributes="0"/>
+                                  <Component id="jButton10" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="Datec" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="97" max="32767" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="595" max="-2" attributes="0"/>

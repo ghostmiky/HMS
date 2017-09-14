@@ -170,6 +170,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="CustomerName">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CustomerNameKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -209,12 +212,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ContactNumber">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ContactNumberKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="NumberOfGuests">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="NumberOfGuestsKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Address">
     </Component>
     <Component class="javax.swing.JTextField" name="Deposit">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="DepositKeyTyped"/>
+      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="DueDate">
       <Properties>
@@ -303,6 +315,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Search Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>

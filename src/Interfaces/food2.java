@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 import prtype.DBconnection;
+import prtype.validations;
 
 /**
  *
@@ -628,6 +629,16 @@ public class food2 extends javax.swing.JFrame {
                 String name = sname.getText();
                 String add = sadd.getText();
                 int cont = Integer.parseInt(scon.getText());
+                
+                String contt = Integer.toString(cont);
+                
+                validations v4 = new validations();
+                
+                boolean a = v4.vcus(name);
+                boolean b = v4.vcus(add);
+                boolean c = v4.vcus(contt);
+                
+              if(a == true && b == true && c == true){ 
              try {  
                 String s = "INSERT INTO supplier (Name,Address,ContactNumber) VALUES ('"+ name +"','"+ add +"','"+ cont +"') ";
                 pst = con.prepareStatement(s);
@@ -641,7 +652,11 @@ public class food2 extends javax.swing.JFrame {
                 
             } catch (SQLException ex) {
                 System.out.println(ex);
-            }
+            }}else{
+                  sname.setText("");
+                sadd.setText("");
+                scon.setText("");
+              }
         
         
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -707,6 +722,14 @@ public class food2 extends javax.swing.JFrame {
         System.out.println(datee);
         System.out.println(dess);
         
+        String costss = Double.toString(costs);
+        
+        validations v2 = new validations();
+        boolean a = v2.vcus(datee);
+        boolean b = v2.vcus(dess);
+        boolean c = v2.vcus(costss);
+        
+        if(a == true && b == true && c == true ){
         try{
             String sqq = "INSERT INTO foodpurchase(purchasedate,totalprize,description) VALUES ('"+ datee +"','"+ costs +"','"+ dess +"')";
             pst = con.prepareStatement(sqq);
@@ -725,6 +748,10 @@ public class food2 extends javax.swing.JFrame {
             
         }catch(Exception e){
             System.out.println(e);
+        }}else{
+            cost.setText("");
+            desc.setText("");
+            
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -735,7 +762,15 @@ public class food2 extends javax.swing.JFrame {
         String leftf = left.getText();
         String supid = ssid.getText();
         
+        validations v3 = new validations();
         
+        boolean a = v3.vcus(name);
+        boolean b = v3.vcus(nd);
+        boolean c = v3.vcus(onh);
+        boolean d = v3.vcus(leftf);
+        boolean f = v3.vcus(supid);
+        
+        if(a==true && b == true && c == true && d == true && f == true ){
         try{
             String ssss = "INSERT INTO foodin(Name,Needed,OnHand,LeftToBuy,SupplierID) VALUES ('"+ name +"','"+ nd +"','"+ onh +"','"+ leftf +"','"+ supid +"')";
             pst = con.prepareStatement(ssss);
@@ -751,6 +786,12 @@ public class food2 extends javax.swing.JFrame {
             
         }catch(Exception e){
         
+        }}else{
+           fname.setText("");
+            needed.setText("");
+            onhand.setText("");
+            left.setText("");
+            ssid.setText(""); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
