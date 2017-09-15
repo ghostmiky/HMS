@@ -6,6 +6,8 @@
 package Interfaces;
 
 import com.mysql.jdbc.Connection;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,54 +24,83 @@ import prtype.validations;
  * @author ASUS
  */
 public class food2 extends javax.swing.JFrame {
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-   
+
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
     public food2() {
         initComponents();
-        con = DBconnection.connect();
-        tableload();
+        con = DBconnection.connect(); // database connection
+        tableload();    // getting the infrmation from the database and pushing them to the jTable
         table3load();
         table1load();
-       
+        setfullscreen();
+
     }
-    public void tableload(){
-        
+
+    public void setfullscreen() { // full screen adjustment
+
+        this.setResizable(false);
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+
+        int xsize = (int) kit.getScreenSize().getWidth();
+        int ysize = (int) kit.getScreenSize().getHeight();
+
+        int x = (xsize * 84) / 100;
+        int y = (ysize * 84) / 100;
+
+        this.setSize(x, y);//set size
+
+        //moving to the center
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int Width = this.getSize().width;
+        int Height = this.getSize().height;
+
+        int locationx = (dimension.width - Width) / 2;
+        int locationy = (dimension.height - Height) / 2;
+
+        this.setLocation(locationx, locationy);
+
+    }
+
+    public void tableload() {  // getting result set from database
+
         try {
             String sqq = "SELECT SupplierId,Name,Address,ContactNumber FROM supplier";
             pst = con.prepareStatement(sqq);
-           rs = pst.executeQuery();
-           
-           jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-           
-           
+            rs = pst.executeQuery();
+
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
-        
+
     }
-    
-    public void table3load(){
-        String sqs =" SELECT purchaseID,purchasedate,totalprize,description FROM foodpurchase";
-        try{    
-        pst = con.prepareStatement(sqs);
+
+    public void table3load() {
+        String sqs = " SELECT purchaseID,purchasedate,totalprize,description FROM foodpurchase";
+        try {
+            pst = con.prepareStatement(sqs);
             rs = pst.executeQuery();
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
-        ;}catch(Exception e){}
+            ;
+        } catch (Exception e) {
+        }
     }
-    
-    public void table1load(){
+
+    public void table1load() {
         String sss = "SELECT ItemId,Name,Needed,OnHand,LeftToBuy,SupplierId from foodin";
-        try{
-                pst = con.prepareStatement(sss);
-                rs = pst.executeQuery();
-                jTable4.setModel(DbUtils.resultSetToTableModel(rs));
-        }catch(Exception e){}
-        
+        try {
+            pst = con.prepareStatement(sss);
+            rs = pst.executeQuery();
+            jTable4.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+        }
+
     }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -619,223 +650,222 @@ public class food2 extends javax.swing.JFrame {
     }//GEN-LAST:event_onhandActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       Cater c = new Cater();
-       c.setVisible(true);
-       this.dispose();
+        Cater c = new Cater();  // viewing the cater window
+        c.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            
-                String name = sname.getText();
-                String add = sadd.getText();
-                int cont = Integer.parseInt(scon.getText());
-                
-                String contt = Integer.toString(cont);
-                
-                validations v4 = new validations();
-                
-                boolean a = v4.vcus(name);
-                boolean b = v4.vcus(add);
-                boolean c = v4.vcus(contt);
-                
-              if(a == true && b == true && c == true){ 
-             try {  
-                String s = "INSERT INTO supplier (Name,Address,ContactNumber) VALUES ('"+ name +"','"+ add +"','"+ cont +"') ";
+
+        String name = sname.getText();     // adding the food supplier infomation to the supplier table in hms database
+        String add = sadd.getText();
+        int cont = Integer.parseInt(scon.getText());
+
+        String contt = Integer.toString(cont);
+
+        validations v4 = new validations();
+
+        boolean a = v4.vcus(name);
+        boolean b = v4.vcus(add);
+        boolean c = v4.vcus(contt);
+
+        if (a == true && b == true && c == true) {
+            try {
+                String s = "INSERT INTO supplier (Name,Address,ContactNumber) VALUES ('" + name + "','" + add + "','" + cont + "') ";
                 pst = con.prepareStatement(s);
                 pst.execute();
                 tableload();
-                
+
                 sname.setText("");
                 sadd.setText("");
                 scon.setText("");
-                
-                
+
             } catch (SQLException ex) {
                 System.out.println(ex);
-            }}else{
-                  sname.setText("");
-                sadd.setText("");
-                scon.setText("");
-              }
-        
-        
+            }
+        } else {
+            sname.setText("");
+            sadd.setText("");
+            scon.setText("");
+        }
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null,"Confirm Delete");
-       if(x == 0){
-           String idd = jLabel14.getText();
-          try{
-           String sss = "DELETE FROM supplier WHERE SupplierId = '"+ idd +"'";
-           pst = con.prepareStatement(sss);
-           pst.execute();
-           tableload();
-          }catch(SQLException ex){
-              System.out.println(ex);
-          }
-       }        
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Delete");   // deleting the supplier infomation
+        if (x == 0) {
+            String idd = jLabel14.getText();
+            try {
+                String sss = "DELETE FROM supplier WHERE SupplierId = '" + idd + "'";
+                pst = con.prepareStatement(sss);
+                pst.execute();
+                tableload();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        int r = jTable2.getSelectedRow();
+        int r = jTable2.getSelectedRow();                        // setting the mouseclicked event in jTable
         String id = jTable2.getValueAt(r, 0).toString();
         String nm = jTable2.getValueAt(r, 1).toString();
         String num = jTable2.getValueAt(r, 2).toString();
-        String addr = jTable2.getValueAt(r,3).toString();
-        
+        String addr = jTable2.getValueAt(r, 3).toString();
+
         jLabel14.setText(id);
         sname.setText(nm);
         sadd.setText(num);
         scon.setText(addr);
-        
+
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int x  = JOptionPane.showConfirmDialog(null, "Confirm Update ");
-        if(x == 0){
-                String name = sname.getText();
-                String address = sadd.getText();
-                String cont = scon.getText();
-                
-                try{
-                    String sss = "UPDATE supplier set Name = '"+ name +"',Address = '"+ address +"', ContactNumber = '"+ cont +"' ";
-                    pst = con.prepareStatement(sss);
-                    pst.execute();
-                    tableload();
-                    
-                    
-                }catch(Exception e ){
-                    
-                }
-            
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Update ");  // update the supplier table
+        if (x == 0) {
+            String name = sname.getText();
+            String address = sadd.getText();
+            String cont = scon.getText();
+
+            try {
+                String sss = "UPDATE supplier set Name = '" + name + "',Address = '" + address + "', ContactNumber = '" + cont + "' ";
+                pst = con.prepareStatement(sss);
+                pst.execute();
+                tableload();
+
+            } catch (Exception e) {
+
+            }
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        double costs = Double.parseDouble(cost.getText());
-        String datee = ((JTextField)Datec.getDateEditor().getUiComponent()).getText();
+        double costs = Double.parseDouble(cost.getText());                   // food purchases insertion
+        String datee = ((JTextField) Datec.getDateEditor().getUiComponent()).getText();
         String dess = desc.getText();
-        
+
         System.out.println(costs);
         System.out.println(datee);
         System.out.println(dess);
-        
+
         String costss = Double.toString(costs);
-        
+
         validations v2 = new validations();
         boolean a = v2.vcus(datee);
         boolean b = v2.vcus(dess);
         boolean c = v2.vcus(costss);
-        
-        if(a == true && b == true && c == true ){
-        try{
-            String sqq = "INSERT INTO foodpurchase(purchasedate,totalprize,description) VALUES ('"+ datee +"','"+ costs +"','"+ dess +"')";
-            pst = con.prepareStatement(sqq);
-            pst.execute();
-            
-            
+
+        if (a == true && b == true && c == true) {
+            try {
+                String sqq = "INSERT INTO foodpurchase(purchasedate,totalprize,description) VALUES ('" + datee + "','" + costs + "','" + dess + "')";
+                pst = con.prepareStatement(sqq);
+                pst.execute();
+
+                cost.setText("");
+                desc.setText("");
+
+                String sqs = " SELECT purchaseID,purchasedate,totalprize,description FROM foodpurchase";          // getting the resultset in to the jTable
+                pst = con.prepareStatement(sqs);
+                rs = pst.executeQuery();
+
+                jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
             cost.setText("");
             desc.setText("");
-            
-            String sqs =" SELECT purchaseID,purchasedate,totalprize,description FROM foodpurchase";
-            pst = con.prepareStatement(sqs);
-            rs = pst.executeQuery();
-            
-           jTable3.setModel(DbUtils.resultSetToTableModel(rs));
-            
-            
-        }catch(Exception e){
-            System.out.println(e);
-        }}else{
-            cost.setText("");
-            desc.setText("");
-            
+
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String name = fname.getText();
-        String nd =  needed.getText();
+        String nd = needed.getText();
         String onh = onhand.getText();
         String leftf = left.getText();
         String supid = ssid.getText();
-        
-        validations v3 = new validations();
-        
+
+        validations v3 = new validations();  // validations
+
         boolean a = v3.vcus(name);
         boolean b = v3.vcus(nd);
         boolean c = v3.vcus(onh);
         boolean d = v3.vcus(leftf);
         boolean f = v3.vcus(supid);
-        
-        if(a==true && b == true && c == true && d == true && f == true ){
-        try{
-            String ssss = "INSERT INTO foodin(Name,Needed,OnHand,LeftToBuy,SupplierID) VALUES ('"+ name +"','"+ nd +"','"+ onh +"','"+ leftf +"','"+ supid +"')";
-            pst = con.prepareStatement(ssss);
-            pst.execute();
-            
+
+        if (a == true && b == true && c == true && d == true && f == true) {  // insertion in to foodin table
+            try {
+                String ssss = "INSERT INTO foodin(Name,Needed,OnHand,LeftToBuy,SupplierID) VALUES ('" + name + "','" + nd + "','" + onh + "','" + leftf + "','" + supid + "')";
+                pst = con.prepareStatement(ssss);
+                pst.execute();
+
+                fname.setText("");
+                needed.setText("");
+                onhand.setText("");
+                left.setText("");
+                ssid.setText("");
+
+                table1load();
+
+            } catch (Exception e) {
+
+            }
+        } else {
             fname.setText("");
             needed.setText("");
             onhand.setText("");
             left.setText("");
             ssid.setText("");
-            
-            table1load();
-            
-        }catch(Exception e){
-        
-        }}else{
-           fname.setText("");
-            needed.setText("");
-            onhand.setText("");
-            left.setText("");
-            ssid.setText(""); 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
-        int x = jTable4.getSelectedRow();
-        
-        String id = jTable4.getValueAt(x,0).toString();
-        String name = jTable4.getValueAt(x,1).toString();
-        String nd = jTable4.getValueAt(x,2).toString();
-        String onh = jTable4.getValueAt(x,3).toString();
-        String leftf = jTable4.getValueAt(x,4).toString();
-        String supiid = jTable4.getValueAt(x,5).toString();
-        
+        int x = jTable4.getSelectedRow();          // getting the information from table to the text boxes
+
+        String id = jTable4.getValueAt(x, 0).toString();
+        String name = jTable4.getValueAt(x, 1).toString();
+        String nd = jTable4.getValueAt(x, 2).toString();
+        String onh = jTable4.getValueAt(x, 3).toString();
+        String leftf = jTable4.getValueAt(x, 4).toString();
+        String supiid = jTable4.getValueAt(x, 5).toString();
+
         jLabel8.setText(id);
         fname.setText(name);
         needed.setText(nd);
         onhand.setText(onh);
         left.setText(leftf);
         ssid.setText(supiid);
-        
+
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       int z = JOptionPane.showConfirmDialog(null, "Confirm Update");
-       if(z == 0){
-           
-           String id = jLabel8.getText();
-           String name = fname.getText();
-        String nd =  needed.getText();
-        String onh = onhand.getText();
-        String leftf = left.getText();
-        String supid = ssid.getText();
-        
-        try{
-            String ssq = " UPDATE foodin set Name = '"+ name +"',Needed = '"+ nd +"',OnHand = '"+ onh +"',LeftToBuy = '"+ leftf +"',SupplierID = '"+ supid +"' WHERE ItemId = '"+ id +"' ";
-            pst = con.prepareStatement(ssq);
-            pst.execute();
-            table1load();
-            
-        }catch(Exception e){
-            
+        int z = JOptionPane.showConfirmDialog(null, "Confirm Update");   //updation of food inventory
+        if (z == 0) {
+
+            String id = jLabel8.getText();
+            String name = fname.getText();
+            String nd = needed.getText();
+            String onh = onhand.getText();
+            String leftf = left.getText();
+            String supid = ssid.getText();
+
+            try {
+                String ssq = " UPDATE foodin set Name = '" + name + "',Needed = '" + nd + "',OnHand = '" + onh + "',LeftToBuy = '" + leftf + "',SupplierID = '" + supid + "' WHERE ItemId = '" + id + "' ";
+                pst = con.prepareStatement(ssq);
+                pst.execute();
+                table1load();
+
+            } catch (Exception e) {
+
+            }
+
         }
-        
-       }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -852,25 +882,25 @@ public class food2 extends javax.swing.JFrame {
         jTextField1.setText(nm);
         cost.setText(num);
         desc.setText(nog);*/
-        
+
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int x = JOptionPane.showConfirmDialog(null, "Confirm Delete");
-       if(x == 0){
-           String idd = jLabel8.getText();
-           try{
-               String oo = "DELETE FROM foodin WHERE ItemId = '"+ idd +"'";
-               pst = con.prepareStatement(oo);
-               pst.execute();
-               table1load();
-               
-           }catch(Exception e){
-           
-           }
-           
-       }
-       
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Delete");    //deleting food items
+        if (x == 0) {
+            String idd = jLabel8.getText();
+            try {
+                String oo = "DELETE FROM foodin WHERE ItemId = '" + idd + "'";
+                pst = con.prepareStatement(oo);
+                pst.execute();
+                table1load();
+
+            } catch (Exception e) {
+
+            }
+
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -6,7 +6,9 @@
 package Interfaces;
 
 
-import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Connection;       //db connection
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +25,7 @@ import prtype.DBconnection;
 
 public class Cater extends javax.swing.JFrame {
 
-    Connection con = null;
+    Connection con = null;                       
     PreparedStatement pst = null;
     ResultSet rs = null;
     
@@ -32,10 +34,36 @@ public class Cater extends javax.swing.JFrame {
         initComponents();
         con = DBconnection.connect();
         tableload();
+        setfullscreen();
         
         
     }
     
+     public void setfullscreen() {
+
+        this.setResizable(false);
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+
+        int xsize = (int) kit.getScreenSize().getWidth();
+        int ysize = (int) kit.getScreenSize().getHeight();
+
+        int x = (xsize * 84) / 100;
+        int y = (ysize * 84) / 100;
+
+        this.setSize(x, y);//set size
+
+        //moving to the center
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int Width = this.getSize().width;
+        int Height = this.getSize().height;
+
+        int locationx = (dimension.width - Width) / 2;
+        int locationy = (dimension.height - Height) / 2;
+
+        this.setLocation(locationx, locationy);
+
+    }
     public void tableload(){
         
         try {
@@ -326,14 +354,14 @@ public class Cater extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       food2 f = new food2();
+       food2 f = new food2();    //food2 window
        f.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                String name = CustomerName.getText();
-                int cnumber = Integer.parseInt(ContactNumber.getText());
+                String name = CustomerName.getText();                      // cater order registrations
+                int cnumber = Integer.parseInt(ContactNumber.getText());        //getting data from text fields to variables
                 int nog = Integer.parseInt(NumberOfGuests.getText());
                 String address = Address.getText();
                 String description = Description.getText();
@@ -345,7 +373,7 @@ public class Cater extends javax.swing.JFrame {
                 String n = Integer.toString(nog);
                 String dep = Double.toString(deposit);
                 
-                validations v1 = new validations();
+                validations v1 = new validations();   // validations
                 boolean vname = v1.vcus(name);
                 boolean vnum = v1.vcus(cnum);
                 boolean c = v1.vcus(n);
@@ -401,7 +429,7 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int r = jTable1.getSelectedRow();
+        int r = jTable1.getSelectedRow();                            //   table data ->  text fields
         String id = jTable1.getValueAt(r, 0).toString();
         String nm = jTable1.getValueAt(r, 1).toString();
         String num = jTable1.getValueAt(r, 2).toString();
@@ -428,7 +456,7 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_duedateActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      int x = JOptionPane.showConfirmDialog(null, "Confirm Update");
+      int x = JOptionPane.showConfirmDialog(null, "Confirm Update");      // update cater order 
       if(x == 0){
           
                 String id = OrderID.getText();
@@ -469,7 +497,7 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int x = JOptionPane.showConfirmDialog(null,"Confirm Delete");
+       int x = JOptionPane.showConfirmDialog(null,"Confirm Delete");   // remove cater orders
        if(x == 0){
            String idd = OrderID.getText();
           try{
@@ -484,7 +512,7 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       String cont = ContactNumber.getText();
+       String cont = ContactNumber.getText();                               // getting the info from database to jTable
         String sl = "SELECT * FROM corder WHERE ContactNumber = '"+ cont +"'";
         try {
             pst = con.prepareStatement(sl);
@@ -499,7 +527,7 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ContactNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContactNumberKeyTyped
-        char a = evt.getKeyChar();
+        char a = evt.getKeyChar();                  // validation  (not allowing the blank spaces)
         
         if(!(Character.isDigit(a) || a == KeyEvent.VK_BACK_SPACE)){
             getToolkit().beep();
@@ -539,7 +567,7 @@ public class Cater extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {
+   public static void main(String args[]) {      // main method
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
