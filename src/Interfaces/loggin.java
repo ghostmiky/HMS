@@ -130,7 +130,7 @@ public class loggin extends javax.swing.JFrame {
 
         if (success == true) {
 
-            if (usernm.contains("malabe") && pass.contains("1234")) {
+            if (usernm.contains("manager") && pass.contains("manager123")) {
                 admin a = new admin();
                 a.setVisible(true);
                 this.dispose();
