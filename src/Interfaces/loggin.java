@@ -24,8 +24,7 @@ public class loggin extends javax.swing.JFrame {
         setfullscreen();
     }
 
-    
-     public void setfullscreen() {
+    public void setfullscreen() {
 
         this.setResizable(false);
 
@@ -34,8 +33,8 @@ public class loggin extends javax.swing.JFrame {
         int xsize = (int) kit.getScreenSize().getWidth();
         int ysize = (int) kit.getScreenSize().getHeight();
 
-        int x = xsize/2;
-        int y = ysize/2;
+        int x = xsize / 2;
+        int y = ysize / 2;
 
         this.setSize(x, y);//set size
 
@@ -50,6 +49,7 @@ public class loggin extends javax.swing.JFrame {
         this.setLocation(locationx, locationy);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,9 +107,9 @@ public class loggin extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(138, Short.MAX_VALUE))
@@ -120,32 +120,65 @@ public class loggin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String usernm=jTextField1.getText();
-        String pass=jPasswordField1.getText();
+        String usernm = jTextField1.getText();
+        String pass = jPasswordField1.getText();
         boolean success;
-        
-        validations login=new validations();
-       success= login.validateUser(usernm, pass);
+
+        validations login = new validations();
+        success = login.validateUser(usernm, pass);
         System.out.println(success);
-       
-       if(success==true){
-           
-           if(usernm.contains("malabe") && pass.contains("1234")){
-               admin a=new admin();
-               a.setVisible(true);
-               this.dispose();
-           }
-           else{
-           hub h=new hub();
-           h.setVisible(true);
-           this.dispose();
-           }
-       }
-       else{
-           JOptionPane.showMessageDialog(null,"Invalid credentials");
-           jTextField1.setText("");
-          jPasswordField1.setText("");
-       }
+
+        if (success == true) {
+
+            if (usernm.contains("malabe") && pass.contains("1234")) {
+                admin a = new admin();
+                a.setVisible(true);
+                this.dispose();
+            } else {
+
+                if (usernm.contains("reception")) {
+                    hub h = new hub();
+                    h.jButton1.setEnabled(false);
+                    h.jButton3.setEnabled(false);
+                    h.jButton5.setEnabled(false);
+                    h.jButton6.setEnabled(false);
+                    h.jButton7.setEnabled(false);
+                    h.jButton8.setEnabled(false);
+
+                    h.setVisible(true);
+                    this.dispose();
+               }
+                else if(usernm.contains("bar&liquor")){
+                     hub h = new hub();
+                    h.jButton1.setEnabled(false);
+                    h.jButton2.setEnabled(false);
+                    h.jButton3.setEnabled(false);
+                    h.jButton4.setEnabled(false);
+                    h.jButton7.setEnabled(false);
+                    h.jButton8.setEnabled(false);
+
+                    h.setVisible(true);
+                    this.dispose();
+                }
+                 else if(usernm.contains("restaurant")){
+                     hub h = new hub();
+                    h.jButton2.setEnabled(false);
+                    h.jButton4.setEnabled(false);
+                    h.jButton5.setEnabled(false);
+                    h.jButton6.setEnabled(false);
+                    h.jButton7.setEnabled(false);
+                    h.jButton8.setEnabled(false);
+
+                    h.setVisible(true);
+                    this.dispose();
+                }
+                
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            jTextField1.setText("");
+            jPasswordField1.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

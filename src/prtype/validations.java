@@ -137,11 +137,14 @@ public class validations {
 
                     if (passwrd.equals(pass)) {
                         status = true;
+                        
+                        
 
                     }
                 }
             } catch (Exception e) {
             }
+            
         }
 
         return status;
