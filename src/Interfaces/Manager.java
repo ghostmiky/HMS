@@ -6,13 +6,13 @@
 package Interfaces;
 
 import Interfaces.Cashier;
-import datastore.store;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import prtype.DBconnection;
 
 /**
  *
@@ -28,7 +28,7 @@ public class Manager extends javax.swing.JFrame {
      */
     public Manager() {
         initComponents();
-        con = store.connect();
+        con = DBconnection.connect();
         tableload1();
     }
 

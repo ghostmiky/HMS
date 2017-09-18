@@ -5,12 +5,13 @@
  */
 package Interfaces;
 
-import datastore.store;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import prtype.DBconnection;
 
 /**
  *
@@ -26,7 +27,7 @@ public class HeadChef extends javax.swing.JFrame {
      */
     public HeadChef() {
         initComponents();
-        con = store.connect();
+        con = DBconnection.connect();
         tableload2();
         devtableload();
     }

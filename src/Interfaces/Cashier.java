@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import datastore.store;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import prtype.DBconnection;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Cashier extends javax.swing.JFrame {
      */
     public Cashier() {
         initComponents();
-        con = store.connect();
+        con = DBconnection.connect();
         tableload2();
         temptableload();
         devtableload();
