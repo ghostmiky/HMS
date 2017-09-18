@@ -56,8 +56,8 @@ public class MAINInterface extends javax.swing.JFrame {
         int xsize = (int) kit.getScreenSize().getWidth();
         int ysize = (int) kit.getScreenSize().getHeight();
 
-        int x = (xsize * 84) / 100;
-        int y = (ysize * 84) / 100;
+        int x = xsize;//(xsize * 84) / 100;
+        int y = ysize;//(ysize * 84) / 100;
 
         this.setSize(x, y);//set size
 
