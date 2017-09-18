@@ -5,7 +5,8 @@
  */
 package Interfaces;
 
-import prtype.DBconnection;
+import Interfaces.Cashier;
+import datastore.store;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,13 +23,12 @@ public class Manager extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs1 = null;
-
     /**
      * Creates new form Manager
      */
     public Manager() {
         initComponents();
-        con = DBconnection.connect();
+        con = store.connect();
         tableload1();
     }
 
@@ -65,7 +65,6 @@ public class Manager extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -83,7 +82,8 @@ public class Manager extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,13 +105,6 @@ public class Manager extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
-
-        jButton5.setText("View Current income");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
 
         jButton6.setText("Todays income");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -135,21 +128,19 @@ public class Manager extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4))
+                                .addGap(79, 79, 79)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jLabel6)
-                                        .addGap(63, 63, 63)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE))))
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(44, 235, Short.MAX_VALUE)
                         .addComponent(jButton6)))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,9 +166,7 @@ public class Manager extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton5)))
+                        .addComponent(jButton6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -264,6 +253,20 @@ public class Manager extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setText("Back");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("jButton15");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -291,12 +294,16 @@ public class Manager extends javax.swing.JFrame {
                                     .addComponent(fidbox)
                                     .addComponent(fpricebox)))
                             .addComponent(jButton7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addGap(174, 833, Short.MAX_VALUE))))
+                        .addGap(117, 117, 117)
+                        .addComponent(jButton15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton12)
+                        .addGap(174, 174, 174))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,39 +326,34 @@ public class Manager extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(fpricebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addComponent(jButton7)
                         .addGap(36, 36, 36)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton15))
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton12)
+                        .addGap(45, 45, 45))))
         );
 
-        jTabbedPane1.addTab("Product", jPanel1);
-
-        jButton8.setText("Go to Chashier");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
+        jTabbedPane1.addTab("   Food   ", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton8)))
+                .addGap(29, 29, 29)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -359,9 +361,7 @@ public class Manager extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,34 +372,40 @@ public class Manager extends javax.swing.JFrame {
         String pname = fnamebox.getText();
         String fID = fidbox.getText();
         String price = fpricebox.getText();
+        
+        if((pname.isEmpty())||(fID.isEmpty())||(price.isEmpty()))
+        {
+            JOptionPane.showMessageDialog(null,"Some text are missing");
+        }
+        else
+        {
+        try {
+            String f = "INSERT INTO food (pname,fID,price) values ('" + pname + "','" + fID + "','" + price + "')";
+            pst = con.prepareStatement(f);
+            pst.execute();
 
-        if ((pname.isEmpty()) || (fID.isEmpty()) || (price.isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Some text are missing");
-        } else {
-            try {
-                String f = "INSERT INTO food (pname,fID,price) values ('" + pname + "','" + fID + "','" + price + "')";
-                pst = con.prepareStatement(f);
-                pst.execute();
-
-                //tableload1();
-            } catch (Exception e) {
-            }
-            tableload1();
-
-            try {
-                /* String x= "INSERT INTO fdorder (price) values ('"+price+"')";
+            //tableload1();
+        } catch (Exception e) {
+        }
+        tableload1();
+        
+        try 
+        {
+           /* String x= "INSERT INTO fdorder (price) values ('"+price+"')";
             pst= con.prepareStatement(x);
             pst.execute();
-                 */
-
-            } catch (Exception e) {
-            }
+            */
+            
+        } catch (Exception e) {
+        }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
 
         //Modify the table
+
         int x = JOptionPane.showConfirmDialog(null, "Do you really want to update");
 
         if (x == 0) {
@@ -407,8 +413,8 @@ public class Manager extends javax.swing.JFrame {
             String foodid = fidbox.getText();
             String fdprice = fpricebox.getText();
 
-            String p = "UPDATE food SET pname='" + pname + "',fID='" + foodid + "',price='" + fdprice + "' WHERE fID='" + foodid + "'";
-
+            String p = "UPDATE food SET pname='" + pname + "',fID='"+foodid+"',price='" + fdprice + "' WHERE fID='" + foodid + "'";
+            
             try {
                 //System.out.println("0");
                 pst = con.prepareStatement(p);
@@ -421,7 +427,7 @@ public class Manager extends javax.swing.JFrame {
 
             } catch (Exception e) {
             }
-
+            
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -443,6 +449,7 @@ public class Manager extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+        
         //delete
         int x = JOptionPane.showConfirmDialog(null, "Do you really want to delete");
 
@@ -470,57 +477,58 @@ public class Manager extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        fnamebox.setText(null);
-        fidbox.setText(null);
-        fpricebox.setText(null);
-
-
+    fnamebox.setText(null);
+    fidbox.setText(null);
+    fpricebox.setText(null);
+    
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        Cashier nn = new Cashier();
+        nn.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
 
-
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void fnameboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnameboxKeyTyped
-
-        char vshar = evt.getKeyChar();
-        if (Character.isDigit(vshar)) {
+        
+         char vshar=evt.getKeyChar();
+        if(Character.isDigit(vshar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Invalid enter");
+             JOptionPane.showMessageDialog(null,"Invalid enter");
         }
-
+        
     }//GEN-LAST:event_fnameboxKeyTyped
 
     private void fpriceboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fpriceboxKeyTyped
-
-        char vchar = evt.getKeyChar();
-        if (!Character.isDigit(vchar)) {
+        
+         char vchar=evt.getKeyChar();
+        if(!Character.isDigit(vchar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "numbers only");
+            JOptionPane.showMessageDialog(null,"numbers only");
         }
-
+        
     }//GEN-LAST:event_fpriceboxKeyTyped
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(jDateChooser1.getDate());
-
-
+        
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void fpriceboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fpriceboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fpriceboxActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
-        Cashier nn = new Cashier();
-        nn.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -562,14 +570,14 @@ public class Manager extends javax.swing.JFrame {
     private javax.swing.JTextField fnamebox;
     private javax.swing.JTextField fpricebox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

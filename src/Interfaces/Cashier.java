@@ -5,7 +5,9 @@
  */
 package Interfaces;
 
-import prtype.DBconnection;
+import datastore.store;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,68 +25,76 @@ public class Cashier extends javax.swing.JFrame {
     PreparedStatement pst = null;
     //PreparedStatement pst1 = null;
     ResultSet rs1 = null;
-
     //ResultSet rs2 = null;
     /**
      * Creates new form Cashier
      */
     public Cashier() {
         initComponents();
-        con = DBconnection.connect();
+        con = store.connect();
         tableload2();
         temptableload();
         devtableload();
         billtableload();
     }
-
-    public void tableload2() {
-        try {
-            String s = "select * from fdorder";
-            pst = con.prepareStatement(s);
-            rs1 = pst.executeQuery();
+    
+    
+    public void tableload2()
+    {
+        try 
+        {
+            String s ="select * from fdorder";
+            pst=con.prepareStatement(s);
+            rs1=pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs1));
-
+            
+            
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-    public void temptableload() {
-        try {
-            String s = "select * from temporder";
-            pst = con.prepareStatement(s);
-            rs1 = pst.executeQuery();
+    public void temptableload()
+    {
+        try 
+        {
+            String s ="select * from temporder";
+            pst=con.prepareStatement(s);
+            rs1=pst.executeQuery();
             jTable4.setModel(DbUtils.resultSetToTableModel(rs1));
-
+            
+            
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-    public void devtableload() {
-        try {
-            String r = "select * from fdelivery";
-            pst = con.prepareStatement(r);
-            rs1 = pst.executeQuery();
+     public void devtableload()
+    {
+        try 
+        {
+            String r ="select * from fdelivery";
+            pst=con.prepareStatement(r);
+            rs1=pst.executeQuery();
             jTable3.setModel(DbUtils.resultSetToTableModel(rs1));
-
+            
+            
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-    public void billtableload() {
-        try {
-            String r = "select * from resbill";
-            pst = con.prepareStatement(r);
-            rs1 = pst.executeQuery();
+      public void billtableload()
+    {
+        try 
+        {
+            String r ="select * from resbill";
+            pst=con.prepareStatement(r);
+            rs1=pst.executeQuery();
             jTable2.setModel(DbUtils.resultSetToTableModel(rs1));
-
+            
+            
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
     /*  public void tableload1() {
         try {
 
@@ -100,6 +110,7 @@ public class Cashier extends javax.swing.JFrame {
             System.out.println(e);
         }
     }*/
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,14 +167,12 @@ public class Cashier extends javax.swing.JFrame {
         landbox = new javax.swing.JTextField();
         addressbox = new javax.swing.JTextField();
         buildingbox = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         contactbox = new javax.swing.JTextField();
-        jButton17 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -233,8 +242,8 @@ public class Cashier extends javax.swing.JFrame {
                                 .addComponent(jLabel17))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(327, Short.MAX_VALUE))
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(358, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,13 +273,15 @@ public class Cashier extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton4))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("      Bill     ", jPanel2);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Order ID");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Table no");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
@@ -280,6 +291,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Food ID");
 
         foodbox.addActionListener(new java.awt.event.ActionListener() {
@@ -293,10 +305,12 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Quantity");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,6 +318,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Add more");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +344,7 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Cancel order");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,8 +358,10 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Total amount");
 
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton7.setText("Print Bill");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,7 +369,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setText("             ");
+        jLabel18.setText("Order ID");
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -371,6 +389,7 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTable4);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("Price");
 
         pricebox.addActionListener(new java.awt.event.ActionListener() {
@@ -384,6 +403,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("Cancel add more ");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,6 +411,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jButton13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton13.setText("Add to total");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,48 +424,48 @@ public class Cashier extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel20))
-                        .addGap(107, 107, 107)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(107, 107, 107))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(128, 128, 128)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(foodbox, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18)
-                            .addComponent(pricebox)))
+                            .addComponent(pricebox)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(35, 35, 35)
-                                .addComponent(ans, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jButton7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(83, 83, 83)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton13)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton2)
-                                        .addGap(48, 48, 48)
-                                        .addComponent(jButton5)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addGap(35, 35, 35)
+                        .addComponent(ans, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(jButton5)))
+                .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(37, 37, 37))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -476,39 +497,40 @@ public class Cashier extends javax.swing.JFrame {
                             .addComponent(jLabel20)
                             .addComponent(pricebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(75, 75, 75)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton13))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(ans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jButton7)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(ans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("     Order    ", jPanel1);
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Name");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Address");
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Buildings");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Land marks");
 
+        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton8.setText("Order now");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,8 +564,6 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setText("View recent orders");
-
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -562,6 +582,7 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable3);
 
+        jButton11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton11.setText("Update");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,16 +590,26 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setText("Delete order");
+        jButton12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton12.setText("Cancel order");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jLabel19.setText("contact no");
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Contact no");
 
+        contactbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactboxActionPerformed(evt);
+            }
+        });
         contactbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contactboxKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 contactboxKeyTyped(evt);
             }
@@ -589,45 +620,40 @@ public class Cashier extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton9)
-                            .addComponent(jButton10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton11)
-                            .addComponent(jButton8)))
+                        .addComponent(jLabel14)
+                        .addGap(103, 103, 103)
+                        .addComponent(buildingbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(103, 103, 103)
-                                .addComponent(buildingbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(103, 103, 103)
-                                .addComponent(landbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(103, 103, 103)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addressbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(namebox, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                        .addComponent(contactbox)))))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(103, 103, 103)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addressbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(namebox, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                .addComponent(contactbox))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(103, 103, 103)
+                        .addComponent(landbox, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(43, 43, 43)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addComponent(jButton12)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -658,284 +684,327 @@ public class Cashier extends javax.swing.JFrame {
                             .addComponent(landbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(87, 87, 87)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton9)
-                            .addComponent(jButton8))
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton11)
-                            .addComponent(jButton12)))
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 123, Short.MAX_VALUE))
+                .addGap(121, 166, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Delivery", jPanel3);
-
-        jButton17.setText("Go to head chef");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(jButton17)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(jButton17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    
         //add items to original table
-        String tableno = jComboBox1.getSelectedItem().toString();
-        String fID = foodbox.getText();
-        String quantity = jComboBox2.getSelectedItem().toString();
+        String tableno=jComboBox1.getSelectedItem().toString();
+        String fID=foodbox.getText();
+        String quantity=jComboBox2.getSelectedItem().toString();
         String price = pricebox.getText();
-
-        if ((tableno.contains("0")) || (fID.isEmpty()) || (price.isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Some text are missing");
-        } else {
-            try {
-                String f = "INSERT INTO fdorder (tableNO,fID,Quantity) values ('" + tableno + "','" + fID + "','" + quantity + "')";
-                pst = con.prepareStatement(f);
-                pst.execute();
-
-            } catch (Exception e) {
-            }
-            tableload2();
-
-            int x = Integer.parseInt(quantity);
-            int y = Integer.parseInt(price);
-
-            int sum = x * y;
-            String answer = Integer.toString(sum);
-            ans.setText(answer);
+        
+        
+        if((tableno.contains("0"))||(fID.isEmpty())||(price.isEmpty()))
+        {
+           /* jComboBox1.setBackground(Color.red);
+            foodbox.setBackground(Color.red);
+             pricebox.setBackground(Color.red);
+            */
+        
+        if(tableno.contains("0"))
+        {
+            //JOptionPane.showMessageDialog(null,"Some text are missing");
+            jComboBox1.setBackground(Color.red);
         }
-
+        else
+        {
+            jComboBox1.setBackground(Color.white);
+        }
+        }
+         if((tableno.contains("0"))||(fID.isEmpty())||(price.isEmpty()))
+         {
+        if(fID.isEmpty())
+        {
+            foodbox.setBackground(Color.red);
+        }
+        else
+        {
+            foodbox.setBackground(Color.white);
+        }
+         }
+          if((tableno.contains("0"))||(fID.isEmpty())||(price.isEmpty()))
+          {
+        if(price.isEmpty())
+        {
+            pricebox.setBackground(Color.red);
+        }
+        else
+        {
+            pricebox.setBackground(Color.white);
+        }
+          }
+        
+        else
+        {
+        try 
+        {
+            String f="INSERT INTO fdorder (tableNO,fID,Quantity) values ('"+tableno+"','"+fID+"','"+quantity+"')";
+            pst=con.prepareStatement(f);
+            pst.execute();
+            
+        } catch (Exception e) {
+        }
+        tableload2();
+        
+        int x= Integer.parseInt(quantity);
+        int y= Integer.parseInt(price);
+        
+        int sum = x*y;
+        String answer=Integer.toString(sum);
+        ans.setText(answer);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        
         //add items to temp table
+        
         //int tableno=Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        String tableno = jComboBox1.getSelectedItem().toString();
-        String fID = foodbox.getText();
-        // String quantity=jComboBox2.getSelectedItem().toString();
-        String quantity = jComboBox2.getSelectedItem().toString();
+        String tableno=jComboBox1.getSelectedItem().toString();
+        String fID=foodbox.getText();
+       // String quantity=jComboBox2.getSelectedItem().toString();
+        String quantity=jComboBox2.getSelectedItem().toString();
         String price = pricebox.getText();
-        int x = Integer.parseInt(quantity);
-        int y = Integer.parseInt(price);
-
-        int sum = x * y;
-        String answer = Integer.toString(sum);
-        ans.setText(answer);
-
-        try {
-            String t = "INSERT INTO temporder (tableNO,fID,Quantity,tfprice) values ('" + tableno + "','" + fID + "','" + quantity + "','" + answer + "')";
-
-            pst = con.prepareStatement(t);
+        int x= Integer.parseInt(quantity);
+        int y= Integer.parseInt(price);
+        
+        int sum = x*y;
+        String answer=Integer.toString(sum);
+        //ans.setText(answer);
+        
+        try 
+        {
+            String t="INSERT INTO temporder (tableNO,fID,Quantity,tfprice) values ('"+tableno+"','"+fID+"','"+quantity+"','"+answer+"')";
+            
+            pst=con.prepareStatement(t);
             pst.execute();
             temptableload();
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
         foodbox.setText(null);
         jComboBox2.setSelectedItem("1");
         pricebox.setText(null);
-
-
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-
+        
         String name = namebox.getText();
         String contactno = contactbox.getText();
         String address = addressbox.getText();
         String building = buildingbox.getText();
         String land = landbox.getText();
-
-        if ((name.isEmpty()) || (contactno.isEmpty()) || (address.isEmpty()) || (building.isEmpty()) || (land.isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Some text are missing");
-        } else {
-            try {
-                String r = "INSERT INTO fdelivery (cname,contactno,caddress,cbuilding,clandmarks) values ('" + name + "','" + contactno + "','" + address + "','" + building + "','" + land + "')";
-                pst = con.prepareStatement(r);
-                pst.execute();
-                devtableload();
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+        
+        if((name.isEmpty())||(contactno.isEmpty())||(address.isEmpty())||(building.isEmpty())||(land.isEmpty()))
+        {
+            JOptionPane.showMessageDialog(null,"Some text are missing");
         }
-
+        else
+        {
+        try 
+        {
+            String r="INSERT INTO fdelivery (cname,contactno,caddress,cbuilding,clandmarks) values ('"+name+"','"+contactno+"','"+address+"','"+building+"','"+land+"')";
+            pst = con.prepareStatement(r);
+            pst.execute();
+            devtableload();
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        }
+        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
-        int i = jTable1.getSelectedRow();
-
+        
+        int i=jTable1.getSelectedRow();
+        
         String orderid = jTable1.getValueAt(i, 0).toString();
         String tableno = jTable1.getValueAt(i, 1).toString();
         String fID = jTable1.getValueAt(i, 2).toString();
         String quantity = jTable1.getValueAt(i, 3).toString();
-
+        
+        
         jLabel18.setText(orderid);
         jComboBox1.setSelectedItem(tableno);
         foodbox.setText(fID);
         jComboBox2.setSelectedItem(quantity);
-
-
+        
+       
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to delete");
-
-        if (x == 0) {
+        int x = JOptionPane.showConfirmDialog(null,"Do you really want to delete");
+        
+        if(x==0)
+        {
             String orderid = jLabel18.getText();
-            String p = "DELETE from fdorder WHERE orderID ='" + orderid + "'";
-
-            try {
-                pst = con.prepareStatement(p);
+            String p ="DELETE from fdorder WHERE orderID ='"+orderid+"'";
+            
+            try 
+            {
+                pst=con.prepareStatement(p);
                 pst.execute();
                 tableload2();
-
+                
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
-        jLabel18.setText(null);
+         jLabel18.setText(null);
         jComboBox1.setSelectedItem("0");
         foodbox.setText(null);
         jComboBox2.setSelectedItem("1");
-
-
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-
+        
         int i = jTable3.getSelectedRow();
-
+        
         String name = jTable3.getValueAt(i, 0).toString();
         String contactno = jTable3.getValueAt(i, 1).toString();
         String address = jTable3.getValueAt(i, 2).toString();
         String building = jTable3.getValueAt(i, 3).toString();
         String land = jTable3.getValueAt(i, 4).toString();
-
+        
         namebox.setText(name);
         contactbox.setText(contactno);
         addressbox.setText(address);
         buildingbox.setText(building);
         landbox.setText(land);
-
+        
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
-
-        int i = jTable4.getSelectedRow();
-
+        
+         int i=jTable4.getSelectedRow();
+        
         //String orderid = jTable4.getValueAt(i, 0).toString();
         String tableNO = jTable4.getValueAt(i, 0).toString();
         String fID = jTable4.getValueAt(i, 1).toString();
         String Quantity = jTable4.getValueAt(i, 2).toString();
         String pprice = jTable4.getValueAt(i, 3).toString();
-
+        
         //jLabel18.setText(orderid);
         jComboBox1.setSelectedItem(tableNO);
         foodbox.setText(fID);
         jComboBox2.setSelectedItem(Quantity);
         pricebox.setText(pprice);
-
-
+        
+        
     }//GEN-LAST:event_jTable4MouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to delete");
-
-        if (x == 0) {
-            String contactno = contactbox.getText();
-            String a = "DELETE from fdelivery WHERE contactno='" + contactno + "'";
-
-            try {
-                pst = con.prepareStatement(a);
-                pst.execute();
-                devtableload();
-
-                namebox.setText(null);
-                contactbox.setText(null);
-                addressbox.setText(null);
-                buildingbox.setText(null);
-                landbox.setText(null);
-
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-
+        
+         int x = JOptionPane.showConfirmDialog(null,"Do you really want to delete");
+         
+         if (x==0)
+         {
+             String contactno = contactbox.getText();
+             String a ="DELETE from fdelivery WHERE contactno='"+contactno+"'";
+             
+             try 
+             {
+                 pst=con.prepareStatement(a);
+                 pst.execute();
+                 devtableload();
+                 
+                 namebox.setText(null);
+                 contactbox.setText(null);
+                 addressbox.setText(null);
+                 buildingbox.setText(null);
+                 landbox.setText(null);
+                 
+             } catch (Exception e) {
+                 System.out.println(e);
+             }
+         }
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
+        
         int x = JOptionPane.showConfirmDialog(null, "Do you really want to update");
-
-        if (x == 0) {
+        
+        if(x==0)
+        {
             String name = namebox.getText();
             String contact = contactbox.getText();
             String address = addressbox.getText();
             String building = buildingbox.getText();
             String land = landbox.getText();
-
-            String s = "UPDATE fdelivery SET cname='" + name + "',contactno='" + contact + "',caddress='" + address + "',cbuilding='" + building + "',clandmarks='" + land + "' WHERE contactno='" + contact + "'";
-
-            try {
+            
+            String s ="UPDATE fdelivery SET cname='"+name+"',contactno='"+contact+"',caddress='"+address+"',cbuilding='"+building+"',clandmarks='"+land+"' WHERE contactno='"+contact+"'";
+            
+            try 
+            {
                 pst = con.prepareStatement(s);
                 pst.execute();
                 devtableload();
-
+                
             } catch (Exception e) {
             }
         }
-
+        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void foodboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodboxActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
         String fID = foodbox.getText();
-        String q = "SELECT price FROM food WHERE fID='" + fID + "'";
-        //System.out.println(q);
-        try {
-            pst = con.prepareStatement(q);
+        String q="SELECT price FROM food WHERE fID='"+fID+"'";
+         //System.out.println(q);
+        try 
+        {
+            pst=con.prepareStatement(q);
             rs1 = pst.executeQuery();
-            while (rs1.next()) {
+            while(rs1.next())
+            {
                 pricebox.setText(rs1.getString("price").toString());
                 //System.out.println(rs1.getString("price").toString());
             }
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -943,158 +1012,210 @@ public class Cashier extends javax.swing.JFrame {
 
     private void foodboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_foodboxKeyTyped
         // TODO add your handling code here:
-
+        
         String fID = foodbox.getText();
-        String q = "SELECT price FROM food WHERE fID='" + fID + "'";
+        String q="SELECT price FROM food WHERE fID='"+fID+"'";
         //System.out.println(q);
-        try {
-            pst = con.prepareStatement(q);
+        try 
+        {
+            pst=con.prepareStatement(q);
             rs1 = pst.executeQuery();
-            while (rs1.next()) {
+            while(rs1.next())
+            {
                 pricebox.setText(rs1.getString("price").toString());
-                //System.out.println(rs1.getString("price").toString());
+                 //System.out.println(rs1.getString("price").toString());
             }
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
+        
+        
     }//GEN-LAST:event_foodboxKeyTyped
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+        
         String amount = ans.getText();
         amountbox.setText(amount);
-
-
+       
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(jDateChooser1.getDate());
-        // String odate = dateFormat.format(jDateChooser2.getDate());
+       // String odate = dateFormat.format(jDateChooser2.getDate());
         String amount = amountbox.getText();
-
-        try {
-            String i = "INSERT INTO resbill (idate,Amount) values ('" + date + "','" + amount + "')";
+        
+        try 
+        {
+            String i ="INSERT INTO resbill (idate,Amount) values ('"+date+"','"+amount+"')";
             pst = con.prepareStatement(i);
             pst.execute();
-
+            
+            
+            
         } catch (Exception e) {
             System.out.println(e);
         }
         billtableload();
-
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-
+        
         int j = jTable2.getSelectedRow();
-
-        String billno = jTable2.getValueAt(j, 0).toString();
-        String amount = jTable2.getValueAt(j, 1).toString();
-
+        
+        String date = jTable2.getValueAt(j, 0).toString();
+        String billno = jTable2.getValueAt(j, 1).toString();
+        String amount = jTable2.getValueAt(j, 2).toString();
+        
+        jDateChooser1.setDateFormatString(date);
         jLabel17.setText(billno);
         amountbox.setText(amount);
-
+        
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void nameboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameboxKeyTyped
 
         //Name box textbox
-        char vshar = evt.getKeyChar();
-        if (Character.isDigit(vshar)) {
+        char vshar=evt.getKeyChar();
+        if(Character.isDigit(vshar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Invalid enter");
+            namebox.setBackground(Color.RED);
+             //JOptionPane.showMessageDialog(null,"Invalid enter");
+         }
+        else
+        {
+            namebox.setBackground(Color.white);
         }
-
+        
     }//GEN-LAST:event_nameboxKeyTyped
 
     private void addressboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addressboxKeyTyped
-
+        
         //Address textbox
-        char vshar = evt.getKeyChar();
-        if (Character.isDigit(vshar)) {
+        char vshar=evt.getKeyChar();
+        if(Character.isDigit(vshar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Invalid enter");
+             //JOptionPane.showMessageDialog(null,"Invalid enter");
+             addressbox.setBackground(Color.red);
         }
-
+        else
+        {
+            addressbox.setBackground(Color.white);
+        }
+        
     }//GEN-LAST:event_addressboxKeyTyped
 
     private void buildingboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buildingboxKeyTyped
-
+        
         //building textbox
-        char vshar = evt.getKeyChar();
-        if (Character.isDigit(vshar)) {
+        char vshar=evt.getKeyChar();
+        if(Character.isDigit(vshar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Invalid enter");
+             //JOptionPane.showMessageDialog(null,"Invalid enter");
+             buildingbox.setBackground(Color.red);
         }
-
+        else
+        {
+            buildingbox.setBackground(Color.white);
+        }
+        
     }//GEN-LAST:event_buildingboxKeyTyped
 
     private void landboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_landboxKeyTyped
-
+        
         //landmarks textbox
-        char vshar = evt.getKeyChar();
-        if (Character.isDigit(vshar)) {
+        char vshar=evt.getKeyChar();
+        if(Character.isDigit(vshar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Invalid enter");
+             JOptionPane.showMessageDialog(null,"Invalid enter");
         }
-
+        
     }//GEN-LAST:event_landboxKeyTyped
 
     private void contactboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactboxKeyTyped
-
+        
         //contact no textbox
-        char vchar = evt.getKeyChar();
-        if (!Character.isDigit(vchar)) {
+        char vchar=evt.getKeyChar();
+        if(!Character.isDigit(vchar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "numbers only");
+            JOptionPane.showMessageDialog(null,"numbers only");
         }
-
+        
+        /* int key = evt.getKeyCode();
+        if((key>=evt.VK_0&&key<=evt.VK_9)||(key>=evt.VK_NUMPAD0&&key<=evt.VK_NUMPAD9)||key==KeyEvent.VK_BACK_SPACE)
+        {
+            contactbox.setEditable(true);
+            contactbox.setBackground(Color.yellow);
+        }
+        else
+        {
+            contactbox.setEditable(false);
+            contactbox.setBackground(Color.RED);
+        }
+        */
     }//GEN-LAST:event_contactboxKeyTyped
 
     private void priceboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceboxKeyTyped
-
+        
         //price textbox
-        char vchar = evt.getKeyChar();
-        if (!Character.isDigit(vchar)) {
+        char vchar=evt.getKeyChar();
+        if(!Character.isDigit(vchar))
+        {
             evt.consume();
-            JOptionPane.showMessageDialog(null, " numbers only");
+            JOptionPane.showMessageDialog(null," numbers only");
         }
-
+        
     }//GEN-LAST:event_priceboxKeyTyped
 
     private void jComboBox1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyTyped
 
         String table = jComboBox1.getSelectedItem().toString();
-
-        if (table.contains("0")) {
-            JOptionPane.showMessageDialog(null, "Enter the table number");
+        
+        if(table.contains("0"))
+        {
+            JOptionPane.showMessageDialog(null,"Enter the table number");
+            jComboBox1.setBackground(Color.red);
         }
-
+        else
+        {
+            jComboBox1.setBackground(Color.white);
+        }
+        
     }//GEN-LAST:event_jComboBox1KeyTyped
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-        int x = JOptionPane.showConfirmDialog(null, "Do you really want to delete");
-
-        if (x == 0) {
-            String tableno = jComboBox1.getSelectedItem().toString();
-
-            String q = "DELETE from temporder WHERE tableNO='" + tableno + "'";
-
-            try {
-                pst = con.prepareStatement(q);
-                pst.execute();
-                temptableload();
-
-            } catch (Exception e) {
-            }
-        }
-
+        
+      int x = JOptionPane.showConfirmDialog(null,"Do you really want to delete");
+      
+      if (x==0)
+      {
+          String tableno=jComboBox1.getSelectedItem().toString();
+          
+          String q= "DELETE from temporder WHERE tableNO='"+tableno+"'";
+          
+          try 
+          {
+              pst = con.prepareStatement(q);
+              pst.execute();
+              temptableload();
+              
+          } catch (Exception e) {
+          }
+      }
+      jComboBox1.setSelectedItem("0");
+      foodbox.setText(null);
+      jComboBox2.setSelectedItem("1");
+      pricebox.setText(null);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void priceboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceboxActionPerformed
@@ -1110,46 +1231,63 @@ public class Cashier extends javax.swing.JFrame {
     }//GEN-LAST:event_amountboxActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-
-        String fID = foodbox.getText();
-
-        String q = "SELECT SUM(tfprice) as 'tot' FROM temporder ";
-
-        try {
+        
+         String fID = foodbox.getText();
+         
+         String q="SELECT SUM(tfprice) as 'tot' FROM temporder ";
+        
+         try 
+        {
             pst = con.prepareStatement(q);
-            rs1 = pst.executeQuery();
-
-            while (rs1.next()) {
+             rs1 = pst.executeQuery();
+             
+             while(rs1.next())
+            {
                 ans.setText(rs1.getString("tot"));
                 System.out.println(rs1.getString("price").toString());
             }
-
+             
+          
+            
         } catch (Exception e) {
-            System.out.println(e);
+             System.out.println(e);
         }
-
-        String tableno = jComboBox1.getSelectedItem().toString();
-
-        String r = "DELETE from temporder WHERE tableNO='" + tableno + "'";
-
-        try {
-            pst = con.prepareStatement(r);
-            pst.execute();
-            temptableload();
-
-        } catch (Exception e) {
-        }
-
+         
+          String tableno=jComboBox1.getSelectedItem().toString();
+          
+          String r= "DELETE from temporder WHERE tableNO='"+tableno+"'";
+          
+          try 
+          {
+              pst = con.prepareStatement(r);
+              pst.execute();
+              temptableload();
+              
+          } catch (Exception e) {
+          }
+         
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void contactboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactboxKeyPressed
+        
+         int key = evt.getKeyCode();
+        if((key>=evt.VK_0&&key<=evt.VK_9)||(key>=evt.VK_NUMPAD0&&key<=evt.VK_NUMPAD9)||key==KeyEvent.VK_BACK_SPACE)
+        {
+            contactbox.setEditable(true);
+            contactbox.setBackground(Color.yellow);
+        }
+        else
+        {
+            contactbox.setEditable(false);
+            contactbox.setBackground(Color.RED);
+        }
+       
+        
+    }//GEN-LAST:event_contactboxKeyPressed
 
-        HeadChef hc = new HeadChef();
-        hc.setVisible(true);
-        this.dispose();
-
-
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void contactboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contactboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1194,11 +1332,9 @@ public class Cashier extends javax.swing.JFrame {
     private javax.swing.JTextField contactbox;
     private javax.swing.JTextField foodbox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
