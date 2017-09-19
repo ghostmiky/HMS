@@ -71,13 +71,13 @@ public class loggin extends javax.swing.JFrame {
         getContentPane().add(jTextField1);
         jTextField1.setBounds(430, 175, 250, 35);
 
-        jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SimSun", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 255, 255));
         jLabel1.setText("User Name");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(272, 182, 140, 28);
+        jLabel1.setBounds(272, 182, 140, 29);
 
-        jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 3, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SimSun", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 255, 255));
         jLabel2.setText("Password");
         getContentPane().add(jLabel2);
