@@ -1,5 +1,5 @@
 
-package Interfaces;
+package prtype;
 
 
 public class Suppliers {

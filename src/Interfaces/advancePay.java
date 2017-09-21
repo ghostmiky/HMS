@@ -206,7 +206,7 @@ public class advancePay extends javax.swing.JFrame {
         double ad;
         
         total = paycal();
-        ad = (total / 100.0)*70 ;
+        ad = (total / 100.0)*25 ;
         System.out.println("advance is:"+ad);
         
         return ad;
