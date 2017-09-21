@@ -16,91 +16,77 @@ import java.util.GregorianCalendar;
  */
 public class hub extends javax.swing.JFrame {
 
-    int time=0;
+    int time = 0;
+
     public hub() {
         initComponents();
         setfullscreen(); // adjusts the screen with respect to the monitor
-        
+
         //CLOCK
-        
-        new Thread(){
-            public void run(){
-                while(time==0){
-                    Calendar cal=new GregorianCalendar();
-                    
-                    int hour=cal.get(Calendar.HOUR);
-                    int min=cal.get(Calendar.MINUTE);
-                    int sec=cal.get(Calendar.SECOND);
-                    int ampm=cal.get(Calendar.AM_PM);
-                    int year=cal.get(Calendar.YEAR);
-                    int month=cal.get(Calendar.MONTH);
-                    int date=cal.get(Calendar.DATE);
-                    
-                    
-                    String day="",Month="";
-                   if(hour==0 && ampm==1){
-                       hour=12;
-                   }
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
                     //AM PM
-                    if(ampm==1){
-                        day="PM";
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
                     }
-                    else
-                    {
-                        day="AM";
-                    }
-                    
+
                     //MONTH
-                    
-                    if(month==0){
-                        Month="January";
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
                     }
-                    else if(month==1){
-                        Month="February";
-                    }
-                     else if(month==2){
-                        Month="March";
-                    }
-                     else if(month==3){
-                        Month="April";
-                    }
-                     else if(month==4){
-                        Month="May";
-                    }
-                     else if(month==5){
-                        Month="June";
-                    }
-                     else if(month==6){
-                        Month="July";
-                    }
-                     else if(month==7){
-                        Month="August";
-                    }
-                     else if(month==8){
-                        Month="September";
-                    }
-                     else if(month==9){
-                        Month="October";
-                    }
-                     else if(month==10){
-                        Month="November";
-                    }
-                     else if(month==11){
-                        Month="December";
-                    }
-                    String clock=hour + ":"+min +":"+sec+" ";
-                    String today=year +" "+ Month + " "+ date;
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
                     jLabel1.setText(clock);
                     jLabel3.setText(day);
-                    jLabel2.setText(today);
-                    
+                    jLabel2.setText(String.valueOf(year));
+                    jLabel4.setText(String.valueOf(Month));
+                    jLabel5.setText(String.valueOf(date));
                 }
             }
         }.start();
-            
+
     }
-    
-     public void setfullscreen() { //screen adjustment function
+
+    public void setfullscreen() { //screen adjustment function
 
         this.setResizable(false);
 
@@ -147,6 +133,8 @@ public class hub extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,23 +228,40 @@ public class hub extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("DS-Digital", 0, 100)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 153, 255));
-        jLabel2.setText("45");
+        jLabel2.setText("yeaa");
 
         jLabel3.setFont(new java.awt.Font("DS-Digital", 0, 150)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel4.setFont(new java.awt.Font("DS-Digital", 0, 100)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel4.setText("Month");
+
+        jLabel5.setFont(new java.awt.Font("DS-Digital", 0, 100)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel5.setText("date");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(325, 325, 325)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,19 +278,12 @@ public class hub extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,14 +295,25 @@ public class hub extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(36, 36, 36)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(238, 238, 238)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -329,8 +338,8 @@ public class hub extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        
-        loggin log=new loggin();
+
+        loggin log = new loggin();
         log.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -383,5 +392,7 @@ public class hub extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

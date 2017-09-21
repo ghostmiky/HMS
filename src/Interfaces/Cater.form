@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Order"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="ff" green="ff" red="66" type="rgb"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -44,26 +44,25 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ContactNumber" max="32767" attributes="0"/>
-                          <Component id="CustomerName" max="32767" attributes="0"/>
-                          <Component id="NumberOfGuests" max="32767" attributes="0"/>
-                          <Component id="Address" alignment="0" max="32767" attributes="0"/>
-                          <Component id="OrderID" min="-2" max="-2" attributes="0"/>
-                          <Component id="PaymentStatus" alignment="0" pref="166" max="32767" attributes="0"/>
-                          <Component id="Deposit" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="302" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="DueDate" alignment="0" max="32767" attributes="0"/>
                           <Component id="duedate" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="ContactNumber" max="32767" attributes="0"/>
+                              <Component id="CustomerName" max="32767" attributes="0"/>
+                              <Component id="NumberOfGuests" max="32767" attributes="0"/>
+                              <Component id="Address" alignment="0" max="32767" attributes="0"/>
+                              <Component id="OrderID" min="-2" max="-2" attributes="0"/>
+                              <Component id="PaymentStatus" alignment="0" pref="166" max="32767" attributes="0"/>
+                              <Component id="Deposit" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>

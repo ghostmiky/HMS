@@ -276,6 +276,7 @@ public class MAINInterface extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 0, 0));
 
         jTabbedPane7.setBackground(new java.awt.Color(204, 255, 153));
 
@@ -1135,10 +1136,10 @@ public class MAINInterface extends javax.swing.JFrame {
                     .addComponent(jLabel34)
                     .addComponent(jLabel35))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
-                    .addComponent(jButton14)
-                    .addComponent(jButton16))
+                    .addComponent(jButton16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton14))
                 .addGap(66, 66, 66)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
