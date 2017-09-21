@@ -1516,60 +1516,32 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-         char alpha = evt.getKeyChar();
-        if (!(Character.isDigit(alpha) || alpha == KeyEvent.VK_BACK_SPACE || alpha == 'V' || alpha == 'v' || alpha == 'm' || alpha == 'M')) {
-            getToolkit().beep();
-            evt.consume();
-        }
+       
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-         char alpha = evt.getKeyChar();
-        if (!(Character.isDigit(alpha) || alpha == KeyEvent.VK_BACK_SPACE || alpha == 'V' || alpha == 'v' || alpha == 'm' || alpha == 'M')) {
-            getToolkit().beep();
-            evt.consume();
-        }
+       
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void pricepdayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pricepdayKeyTyped
         // TODO add your handling code here:
-         char alpha = evt.getKeyChar();
-        if (!(Character.isDigit(alpha) || alpha == KeyEvent.VK_BACK_SPACE || alpha == 'V' || alpha == 'v' || alpha == 'm' || alpha == 'M')) {
-            getToolkit().beep();
-            evt.consume();
-        }
+       
     }//GEN-LAST:event_pricepdayKeyTyped
 
     private void daysKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_daysKeyTyped
         // TODO add your handling code here:
-         char alpha = evt.getKeyChar();
-        if (!(Character.isDigit(alpha) || alpha == KeyEvent.VK_BACK_SPACE || alpha == 'V' || alpha == 'v' || alpha == 'm' || alpha == 'M')) {
-            getToolkit().beep();
-            evt.consume();
-        }
+        
     }//GEN-LAST:event_daysKeyTyped
 
     private void pNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pNameKeyTyped
         // TODO add your handling code here:
-             char alpha = evt.getKeyChar();
-
-        if (!(Character.isLetter(alpha) || alpha == KeyEvent.VK_BACK_SPACE)) {
-            getToolkit().beep();
-            evt.consume();
-
-        }
+    
     }//GEN-LAST:event_pNameKeyTyped
 
     private void availabilityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_availabilityKeyTyped
         // TODO add your handling code here:
-             char alpha = evt.getKeyChar();
-
-        if (!(Character.isLetter(alpha) || alpha == KeyEvent.VK_BACK_SPACE)) {
-            getToolkit().beep();
-            evt.consume();
-
-        }
+         
     }//GEN-LAST:event_availabilityKeyTyped
 
     /**
