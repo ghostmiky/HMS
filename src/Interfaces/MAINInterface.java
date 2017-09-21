@@ -40,6 +40,8 @@ public class MAINInterface extends javax.swing.JFrame {
         setfullscreen();//set full screen window
         roomtableload();//load room details
 
+          
+        
         jDateChooser1.setMinSelectableDate(new Date());//disable old dates
         jDateChooser2.setMinSelectableDate(new Date());//disable old dates
 
