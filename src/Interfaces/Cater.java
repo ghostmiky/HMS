@@ -122,7 +122,11 @@ public class Cater extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Order");
+<<<<<<< HEAD
         setBackground(new java.awt.Color(102, 102, 255));
+=======
+        setBackground(new java.awt.Color(102, 255, 255));
+>>>>>>> c5ddb0d4f4f5bebc668be9a6cfe37c736df77e30
 
         jLabel1.setText("Order ID");
 

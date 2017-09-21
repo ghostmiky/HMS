@@ -160,6 +160,11 @@ public class loggin extends javax.swing.JFrame {
                     h.setVisible(true);
                     this.dispose();
                 }
+                 else if(usernm.contains("manageall")){
+                     hub h = new hub();
+                     h.setVisible(true);
+                     this.dispose();
+                 }
                 
             }
         } else {
