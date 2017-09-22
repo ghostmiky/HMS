@@ -11,6 +11,9 @@ public class validations {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    public static boolean check=false;
+   
+    public static int truecount=0;
 
     public validations() {
         con = DBconnection.connect();
@@ -149,5 +152,21 @@ public class validations {
 
         return status;
     }
+    
+    public static boolean emptyCheck(String che)
+    {
+        
+        
+        if(che.trim().isEmpty()){
+            check=false;
+             return check;
+            
+        }
+      
+        else
+            truecount ++;
+            return true;
+    }
+    
 
 }

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import static prtype.validations.truecount;
 
 
 /**
@@ -168,6 +169,7 @@ public class Add extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -187,11 +189,12 @@ public class Add extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        ac = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jButton21 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -327,6 +330,11 @@ public class Add extends javax.swing.JFrame {
                 capacityActionPerformed(evt);
             }
         });
+        capacity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capacityKeyTyped(evt);
+            }
+        });
 
         model.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         model.addActionListener(new java.awt.event.ActionListener() {
@@ -351,13 +359,6 @@ public class Add extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("DriverID");
-
-        ac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acActionPerformed(evt);
-            }
-        });
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -396,6 +397,19 @@ public class Add extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRadioButton1.setText("AC");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRadioButton2.setText("Non AC");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -404,16 +418,6 @@ public class Add extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton21)
                 .addGap(84, 84, 84))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,22 +431,34 @@ public class Add extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(model, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(ac, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(capacity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(capacity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(did, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(availability, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Vno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton2)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(76, 76, 76)
                         .addComponent(jLabel6)
-                        .addContainerGap(557, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)
+                        .addContainerGap(563, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,11 +479,17 @@ public class Add extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel13)
+                                .addGap(28, 28, 28))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButton1)
+                                    .addComponent(jRadioButton2))
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(did, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
@@ -612,9 +634,6 @@ public class Add extends javax.swing.JFrame {
                                 .addGap(22, 22, 22)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel18)
                                             .addComponent(jLabel19)
@@ -623,8 +642,10 @@ public class Add extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 952, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel25)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel23)
+                                            .addComponent(jLabel25))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jLabel26)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -1109,7 +1130,7 @@ public class Add extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -1124,14 +1145,23 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_pricepdayActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        int x=JOptionPane.showConfirmDialog(null,"Do you want to add this package?");
-        
-        if(x==0){
         String name= pName.getText();
         String desc= des.getText();
         String price= pricepday.getText();
         String day= days.getText();
+        
+        prtype.validations.emptyCheck(name);
+        prtype.validations.emptyCheck(desc);
+        prtype.validations.emptyCheck(price);
+        prtype.validations.emptyCheck(day);
+        
+        
+        if(truecount==4){
+        
+        
+       int x=JOptionPane.showConfirmDialog(null,"Do you want to add this package?");
+        
+        if(x==0){ 
         
        try
        { String q= "INSERT INTO package(pName,price,days,description) values('"+name+"','"+price+"','"+day+"','"+desc+"')";
@@ -1144,6 +1174,13 @@ public class Add extends javax.swing.JFrame {
            System.out.println(e);   
        }
         }
+       truecount=0; 
+        }
+        
+        else
+            JOptionPane.showMessageDialog(null,"You cannot have empty fields!","Warning",JOptionPane.WARNING_MESSAGE);
+            truecount=0;
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void VnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VnoActionPerformed
@@ -1157,10 +1194,6 @@ public class Add extends javax.swing.JFrame {
     private void modelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modelActionPerformed
-
-    private void acActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_acActionPerformed
 
     private void didActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_didActionPerformed
         // TODO add your handling code here:
@@ -1176,27 +1209,61 @@ public class Add extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        int x=JOptionPane.showConfirmDialog(null,"Do you want to add new vehicle?");
-        if(x==0){
+        String vac="";
+        
+        
         String vehicleno= Vno.getText();
         String vmodel= model.getText();
         String vcapacity= capacity.getText();
-        String vac= ac.getText();
+        
         String vtype=type.getText();
         String vav=availability.getText();
-       
-       try
-       { String q= "INSERT INTO vehicle(vehicleNo, model, capacity,AC,type,availability) values('"+vehicleno+"','"+vmodel+"','"+vcapacity+"','"+vac+"','"+vtype+"','"+vav+"')";
-        ps= con.prepareStatement(q);
-        ps.execute();
-        vTableload();
-       }
-       
-       catch(SQLException e){
-           System.out.println(e);   
-       }
+        
+        if(jRadioButton1.isSelected()){
+            vac="AC";
         }
+        else if(jRadioButton2.isSelected()){
+             vac="Non AC";
+        }
+        
+        
+        
+        
+        prtype.validations.emptyCheck(vehicleno);
+        prtype.validations.emptyCheck(vmodel);
+        prtype.validations.emptyCheck(vcapacity);
+        prtype.validations.emptyCheck(vac);
+        prtype.validations.emptyCheck(vtype);
+        prtype.validations.emptyCheck(vav);
+        
+        
+        if(truecount==6)
+        {    
+        
+            
+            int x=JOptionPane.showConfirmDialog(null,"Do you want to add new vehicle?");
+                if(x==0)
+                {
+                    try
+                    {  
+                    
+                        String q= "INSERT INTO vehicle(vehicleNo, model, capacity,AC,type,availability) values('"+vehicleno+"','"+vmodel+"','"+vcapacity+"','"+vac+"','"+vtype+"','"+vav+"')";
+                        ps= con.prepareStatement(q);
+                        ps.execute();
+                        vTableload();
+                    }
        
+                    catch(SQLException e){
+                        System.out.println(e);   
+                    }        
+                }
+                truecount=0;
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(null,"You cannot have empty fields!","Warning",JOptionPane.WARNING_MESSAGE);
+            truecount=0;
+        }
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1218,15 +1285,25 @@ public class Add extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        int x=JOptionPane.showConfirmDialog(null,"Do you want to update this package?");
-        
-        if(x==0)
-        {
-        String ppid=lbPid.getText(); 
+       String ppid=lbPid.getText(); 
         String pname=pName.getText();
         String ppricepday=pricepday.getText();
         String pdays=days.getText();
         String pdes=des.getText();
+        
+        prtype.validations.emptyCheck(ppid);
+        prtype.validations.emptyCheck(pname);
+        prtype.validations.emptyCheck(ppricepday);
+        prtype.validations.emptyCheck(pdays);
+        prtype.validations.emptyCheck(pdes);
+        
+        if(truecount==5)
+        {
+            
+        int x=JOptionPane.showConfirmDialog(null,"Do you want to update this package?");
+        
+        if(x==0)
+        {
         
         String q="UPDATE package SET pName='"+pname+"',price='"+ppricepday+"' , days='"+pdays+"', description='"+pdes+"'  where pID= '"+ppid+"'";
         try{
@@ -1239,11 +1316,18 @@ public class Add extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
+        truecount=0;
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"You cannot have empty fields!","Warning",JOptionPane.WARNING_MESSAGE);
+            truecount=0;
+        
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-        int x=JOptionPane.showConfirmDialog(null,"Do you want to delete this package?");
+       int x=JOptionPane.showConfirmDialog(null,"Do you want to delete this package?");
         
         if(x==0){
         String pckgid=lbPid.getText();
@@ -1253,6 +1337,11 @@ public class Add extends javax.swing.JFrame {
             ps=con.prepareStatement(que);
             ps.execute();
             pTableload();
+            lbPid.setText("");
+            pName.setText("");
+            pricepday.setText("");
+            days.setText("");
+            des.setText("");
         }
         
         catch(Exception e){}
@@ -1273,9 +1362,19 @@ public class Add extends javax.swing.JFrame {
         Vno.setText(vno);
         model.setText(vmod);
         capacity.setText(vcap);
-        ac.setText(vac);
+        
         type.setText(vtype);
         availability.setText(vav);
+        
+        if(vac.equals("AC")){
+            jRadioButton1.setSelected(true);
+            
+        }
+        
+        else if(vac.equals("Non AC")){
+            jRadioButton2.setSelected(true);
+        }
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1289,6 +1388,16 @@ public class Add extends javax.swing.JFrame {
             ps=con.prepareStatement(que);
             ps.execute();
             vTableload();
+            
+            Vno.setText("");
+            model.setText("");
+            capacity.setText("");
+        
+            type.setText("");
+            availability.setText("");
+        
+            buttonGroup1.clearSelection();
+            
         }
         
         catch(Exception e){}
@@ -1310,15 +1419,34 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-       int x=JOptionPane.showConfirmDialog(null,"Do you want to update this vehicle?");
-       if(x==0){
-       String no= Vno.getText();
+        String no= Vno.getText();
        String mod=model.getText();
        String cap=capacity.getText();
-       String vac=ac.getText();
+       
        String tp=type.getText();
        String av=availability.getText();
+       String vac="";
+       
+       
+       if(jRadioButton1.isSelected()){
+            vac="AC";
+        }
+        else if(jRadioButton2.isSelected()){
+             vac="Non AC";
+        }
+       
+       
+        prtype.validations.emptyCheck(no);
+        prtype.validations.emptyCheck(mod);
+        prtype.validations.emptyCheck(cap);
+        prtype.validations.emptyCheck(vac);
+        prtype.validations.emptyCheck(tp);
+        prtype.validations.emptyCheck(av);
+        
+        if(truecount==6){
+       
+       int x=JOptionPane.showConfirmDialog(null,"Do you want to update this vehicle?");
+       if(x==0){
        
        String srti="UPDATE vehicle SET model='"+mod+"', capacity='"+cap+"', AC='"+vac+"', type='"+tp+"', availability='"+av+"' where vehicleNo='"+no+"' ";
        
@@ -1328,16 +1456,25 @@ public class Add extends javax.swing.JFrame {
             vTableload();
         } catch (Exception e) {
         }
+        
        }
+        truecount=0;}
+       else {
+           JOptionPane.showMessageDialog(null,"You cannot have empty fields!","Warning",JOptionPane.WARNING_MESSAGE);
+            truecount=0;
+       }
+       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Vno.setText("");
+         Vno.setText("");
         model.setText("");
         capacity.setText("");
-        ac.setText("");
+        
         type.setText("");
         availability.setText("");
+        
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -1516,11 +1653,19 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-       
+       char tchar=evt.getKeyChar();
+        if(!Character.isDigit(tchar))
+        {
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        // TODO add your handling code here:
+        char tchar=evt.getKeyChar();
+        if(!Character.isDigit(tchar))
+        {
+            evt.consume();
+        }
        
     }//GEN-LAST:event_jTextField1KeyTyped
 
@@ -1530,12 +1675,20 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_pricepdayKeyTyped
 
     private void daysKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_daysKeyTyped
-        // TODO add your handling code here:
+        char tchar=evt.getKeyChar();
+        if(!Character.isDigit(tchar))
+        {
+            evt.consume();
+        }
         
     }//GEN-LAST:event_daysKeyTyped
 
     private void pNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pNameKeyTyped
-        // TODO add your handling code here:
+         char tchar=evt.getKeyChar();
+        if(Character.isDigit(tchar))
+        {
+            evt.consume();
+        }
     
     }//GEN-LAST:event_pNameKeyTyped
 
@@ -1543,6 +1696,18 @@ public class Add extends javax.swing.JFrame {
         // TODO add your handling code here:
          
     }//GEN-LAST:event_availabilityKeyTyped
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void capacityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capacityKeyTyped
+        char tchar=evt.getKeyChar();
+        if(!Character.isDigit(tchar))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_capacityKeyTyped
 
     /**
      * @param args the command line arguments
@@ -1582,8 +1747,8 @@ public class Add extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Vno;
-    private javax.swing.JTextField ac;
     private javax.swing.JTextField availability;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField days;
     private javax.swing.JTextArea des;
@@ -1649,6 +1814,8 @@ public class Add extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
