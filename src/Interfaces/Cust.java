@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import prtype.DBconnection;
@@ -30,6 +31,7 @@ public class Cust extends javax.swing.JFrame {
     
     public Cust() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(204,204,255));
         
         
       con=DBconnection.connect();
