@@ -170,6 +170,7 @@ public class Add extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
@@ -180,7 +181,6 @@ public class Add extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        availability = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         Vno = new javax.swing.JTextField();
@@ -195,6 +195,8 @@ public class Add extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -304,13 +306,6 @@ public class Add extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Type");
 
-        availability.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        availability.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                availabilityKeyTyped(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Capacity");
 
@@ -398,7 +393,7 @@ public class Add extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton1.setText("AC");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,8 +402,16 @@ public class Add extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton2.setText("Non AC");
+
+        buttonGroup2.add(jRadioButton3);
+        jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton3.setText("Available");
+
+        buttonGroup2.add(jRadioButton4);
+        jRadioButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jRadioButton4.setText("Not Available");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -433,18 +436,21 @@ public class Add extends javax.swing.JFrame {
                     .addComponent(model, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(capacity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(did, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(availability, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Vno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jRadioButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(jRadioButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jRadioButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton4)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(56, 56, 56)
                         .addComponent(jLabel6)
-                        .addContainerGap(563, Short.MAX_VALUE))
+                        .addContainerGap(569, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,18 +505,19 @@ public class Add extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(availability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)))
+                            .addComponent(jLabel11)
+                            .addComponent(jRadioButton3)
+                            .addComponent(jRadioButton4)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(89, 89, 89)
+                .addGap(87, 87, 87)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton7)
                     .addComponent(jButton2)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jButton21)
                 .addContainerGap())
         );
@@ -1210,6 +1217,7 @@ public class Add extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         String vac="";
+        String vav="";
         
         
         String vehicleno= Vno.getText();
@@ -1217,7 +1225,15 @@ public class Add extends javax.swing.JFrame {
         String vcapacity= capacity.getText();
         
         String vtype=type.getText();
-        String vav=availability.getText();
+        
+        if(jRadioButton3.isSelected()){
+            vav="y";
+        }
+        
+        else if(jRadioButton4.isSelected()){
+            vav="n";
+        }
+        
         
         if(jRadioButton1.isSelected()){
             vac="AC";
@@ -1227,8 +1243,7 @@ public class Add extends javax.swing.JFrame {
         }
         
         
-        
-        
+            
         prtype.validations.emptyCheck(vehicleno);
         prtype.validations.emptyCheck(vmodel);
         prtype.validations.emptyCheck(vcapacity);
@@ -1236,14 +1251,15 @@ public class Add extends javax.swing.JFrame {
         prtype.validations.emptyCheck(vtype);
         prtype.validations.emptyCheck(vav);
         
-        
         if(truecount==6)
         {    
-        
+            
             
             int x=JOptionPane.showConfirmDialog(null,"Do you want to add new vehicle?");
                 if(x==0)
                 {
+                   
+                    
                     try
                     {  
                     
@@ -1260,10 +1276,18 @@ public class Add extends javax.swing.JFrame {
                 truecount=0;
         }
         
+        
+        
+        
         else{
             JOptionPane.showMessageDialog(null,"You cannot have empty fields!","Warning",JOptionPane.WARNING_MESSAGE);
             truecount=0;
         }
+        
+        
+        
+        
+        
          
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1364,7 +1388,7 @@ public class Add extends javax.swing.JFrame {
         capacity.setText(vcap);
         
         type.setText(vtype);
-        availability.setText(vav);
+   
         
         if(vac.equals("AC")){
             jRadioButton1.setSelected(true);
@@ -1373,6 +1397,15 @@ public class Add extends javax.swing.JFrame {
         
         else if(vac.equals("Non AC")){
             jRadioButton2.setSelected(true);
+        }
+        
+        if(vav.equals("y")){
+            jRadioButton3.setSelected(true);
+            
+        }
+        
+        else if(vav.equals("n")){
+            jRadioButton4.setSelected(true);
         }
         
     }//GEN-LAST:event_jTable1MouseClicked
@@ -1394,9 +1427,10 @@ public class Add extends javax.swing.JFrame {
             capacity.setText("");
         
             type.setText("");
-            availability.setText("");
+         
         
             buttonGroup1.clearSelection();
+            buttonGroup2.clearSelection();
             
         }
         
@@ -1424,9 +1458,9 @@ public class Add extends javax.swing.JFrame {
        String cap=capacity.getText();
        
        String tp=type.getText();
-       String av=availability.getText();
+      
        String vac="";
-       
+       String vav="";
        
        if(jRadioButton1.isSelected()){
             vac="AC";
@@ -1435,26 +1469,38 @@ public class Add extends javax.swing.JFrame {
              vac="Non AC";
         }
        
+       if(jRadioButton3.isSelected()){
+            vav="y";
+        }
+        
+        else if(jRadioButton4.isSelected()){
+            vav="n";
+        }
+       
+       
+       
        
         prtype.validations.emptyCheck(no);
         prtype.validations.emptyCheck(mod);
         prtype.validations.emptyCheck(cap);
         prtype.validations.emptyCheck(vac);
         prtype.validations.emptyCheck(tp);
-        prtype.validations.emptyCheck(av);
+        prtype.validations.emptyCheck(vav);
         
         if(truecount==6){
        
        int x=JOptionPane.showConfirmDialog(null,"Do you want to update this vehicle?");
        if(x==0){
        
-       String srti="UPDATE vehicle SET model='"+mod+"', capacity='"+cap+"', AC='"+vac+"', type='"+tp+"', availability='"+av+"' where vehicleNo='"+no+"' ";
+       String srti="UPDATE vehicle SET model='"+mod+"', capacity='"+cap+"', AC='"+vac+"', type='"+tp+"', availability='"+vav+"' where vehicleNo='"+no+"' ";
        
         try {
             ps=con.prepareStatement(srti);
             ps.execute();
             vTableload();
         } catch (Exception e) {
+            
+            System.out.println(e);
         }
         
        }
@@ -1472,9 +1518,10 @@ public class Add extends javax.swing.JFrame {
         capacity.setText("");
         
         type.setText("");
-        availability.setText("");
+        
         
         buttonGroup1.clearSelection();
+        buttonGroup2.clearSelection();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -1532,11 +1579,19 @@ public class Add extends javax.swing.JFrame {
             ps=con.prepareStatement(que);
             ps.execute();
             tTableload();
+            
+            jLabel18.setText("");
+        jLabel19.setText("");
+        jLabel20.setText("");
+        jLabel23.setText("");
+        jLabel25.setText("");
+        jTextField1.setText(""); 
+            
         }
         
-        catch(Exception e){}
-        
-        }
+        catch(Exception e){
+            System.out.println(e);
+        }}
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1692,11 +1747,6 @@ public class Add extends javax.swing.JFrame {
     
     }//GEN-LAST:event_pNameKeyTyped
 
-    private void availabilityKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_availabilityKeyTyped
-        // TODO add your handling code here:
-         
-    }//GEN-LAST:event_availabilityKeyTyped
-
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
@@ -1747,8 +1797,8 @@ public class Add extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Vno;
-    private javax.swing.JTextField availability;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField days;
     private javax.swing.JTextArea des;
@@ -1816,6 +1866,8 @@ public class Add extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
