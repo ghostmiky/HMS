@@ -246,10 +246,28 @@ public class Defects extends javax.swing.JFrame {
 
         jLabel5.setText("Total_Additional_Price  ");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select", "fragile", "non fragile" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
             }
         });
 
@@ -270,7 +288,25 @@ public class Defects extends javax.swing.JFrame {
 
         jLabel10.setText("Stock_ID  ");
 
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
+
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select", "fragile", "non fragile" }));
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
+            }
+        });
 
         jButton4.setText("CALCULATE");
 
@@ -768,6 +804,102 @@ public class Defects extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+        try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
 
     /**
      * @param args the command line arguments

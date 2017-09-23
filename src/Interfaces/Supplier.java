@@ -195,6 +195,41 @@ public class Supplier extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
+
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField5KeyTyped(evt);
+            }
+        });
+
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,6 +283,12 @@ public class Supplier extends javax.swing.JFrame {
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
+            }
+        });
+
+        jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField7KeyTyped(evt);
             }
         });
 
@@ -518,6 +559,115 @@ public class Supplier extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+        try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isAlphabetic(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField5KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+       try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isDigit(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+          try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isDigit(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField4KeyTyped
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isDigit(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTextField7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField7KeyTyped
+         try{
+        
+            char alpha = evt.getKeyChar();
+            if(Character.isDigit(alpha)){
+            
+                evt.consume();
+            }
+        
+        }
+        catch(Exception e){
+        
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jTextField7KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        String contactNum = jTextField3.getText();
+        char alpha = evt.getKeyChar();
+        if(contactNum.length()<1 && alpha != '0'){
+        
+            evt.consume();
+        }
+        else if(contactNum.length()==10){
+            evt.consume();
+        
+        }
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
      * @param args the command line arguments
