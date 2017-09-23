@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import prtype.DBconnection;
 
@@ -34,12 +36,76 @@ public class selection extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    int time=0;
     
     public selection() {
         
         initComponents();
         conn = DBconnection.connect();
         setfullscreen();
+        
+               //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss7.setText(clock);
+                    dayss7.setText(day);
+                    yearss7.setText(String.valueOf(year));
+                    Monthss7.setText(String.valueOf(Month));
+                    datess7.setText(String.valueOf(date));
+                }
+            }
+        }.start();
         
     }
 
@@ -98,6 +164,11 @@ public class selection extends javax.swing.JFrame {
         hallR = new javax.swing.JComboBox<>();
         timeR = new javax.swing.JComboBox<>();
         dateR = new com.toedter.calendar.JDateChooser();
+        Monthss7 = new javax.swing.JLabel();
+        datess7 = new javax.swing.JLabel();
+        yearss7 = new javax.swing.JLabel();
+        clockss7 = new javax.swing.JLabel();
+        dayss7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,26 +369,64 @@ public class selection extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("   Hall Booking    ", jPanel1);
 
+        Monthss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss7.setText("month");
+
+        datess7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess7.setText("date");
+
+        yearss7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss7.setText("year");
+
+        clockss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss7.setText("jLabel40");
+
+        dayss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss7.setText("AM");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(291, 291, 291)
-                        .addComponent(jLabel1)))
+                .addGap(78, 78, 78)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(117, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clockss7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dayss7)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(yearss7)
+                        .addGap(18, 18, 18)
+                        .addComponent(Monthss7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datess7))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel1)
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clockss7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dayss7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(yearss7)
+                            .addComponent(Monthss7)
+                            .addComponent(datess7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
@@ -434,8 +543,12 @@ public class selection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Monthss7;
+    private javax.swing.JLabel clockss7;
     private javax.swing.JTextField cusR2;
     private com.toedter.calendar.JDateChooser dateR;
+    private javax.swing.JLabel datess7;
+    private javax.swing.JLabel dayss7;
     private javax.swing.JComboBox<String> hallR;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -460,5 +573,6 @@ public class selection extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel regCusId;
     private javax.swing.JComboBox<String> timeR;
+    private javax.swing.JLabel yearss7;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,22 +11,91 @@ import java.awt.Toolkit;
 import prtype.DBconnection;
 import java.sql.*;
 import java.sql.PreparedStatement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+
 public class Defects extends javax.swing.JFrame {
 
     Connection conn = null;
-   PreparedStatement pst = null;
-   ResultSet rs = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    int time = 0;
+
     public Defects() {
         initComponents();
-        
-         conn = DBconnection.connect();
+
+        conn = DBconnection.connect();
         tableload();
         table1load();
         setfullscreen();
+
+        //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss4.setText(clock);
+                    dayss4.setText(day);
+                    yearss4.setText(String.valueOf(year));
+                    Monthss4.setText(String.valueOf(Month));
+                    datess4.setText(String.valueOf(date));
+                }
+            }
+        }.start();
     }
-     public void setfullscreen() {
+
+    public void setfullscreen() {
 
         this.setResizable(false);
 
@@ -51,43 +120,37 @@ public class Defects extends javax.swing.JFrame {
         this.setLocation(locationx, locationy);
 
     }
-    public void tableload(){
-    
-        try{
-           String sql= "select Customer_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price from defectsc ";
-           pst = conn.prepareStatement(sql);
-           rs = pst.executeQuery();
-           
-           jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
-        }
-        catch(Exception e){
-        
-        
-        }
-    
-    
-    }
-     public void table1load(){
-    
-        try{
-           String sql1= "select Worker_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price from defectsw ";
-           pst = conn.prepareStatement(sql1);
-           rs = pst.executeQuery();
-           
-          jTable2.setModel(DbUtils.resultSetToTableModel(rs));
-        
-        }
-        catch(Exception e){
-        
-        
-        }
-    
-    
-    }
-    
 
-    
+    public void tableload() {
+
+        try {
+            String sql = "select Customer_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price from defectsc ";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void table1load() {
+
+        try {
+            String sql1 = "select Worker_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price from defectsw ";
+            pst = conn.prepareStatement(sql1);
+            rs = pst.executeQuery();
+
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -129,6 +192,11 @@ public class Defects extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        clockss4 = new javax.swing.JLabel();
+        dayss4 = new javax.swing.JLabel();
+        yearss4 = new javax.swing.JLabel();
+        Monthss4 = new javax.swing.JLabel();
+        datess4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -262,6 +330,21 @@ public class Defects extends javax.swing.JFrame {
             }
         });
 
+        clockss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss4.setText("jLabel40");
+
+        dayss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss4.setText("AM");
+
+        yearss4.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss4.setText("year");
+
+        Monthss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss4.setText("month");
+
+        datess4.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess4.setText("date");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -364,41 +447,64 @@ public class Defects extends javax.swing.JFrame {
                                 .addGap(259, 259, 259)))
                         .addGap(81, 81, 81)))
                 .addGap(31, 31, 31))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(clockss4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dayss4)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(yearss4)
+                        .addGap(18, 18, 18)
+                        .addComponent(Monthss4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datess4)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clockss4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dayss4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearss4)
+                    .addComponent(Monthss4)
+                    .addComponent(datess4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextField5))
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton11))
                         .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextField6))
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton12))
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -411,67 +517,69 @@ public class Defects extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jComboBox2))
-                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton13))
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField3)
+                                .addComponent(jTextField7))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jTextField7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextField1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton8))
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextField2))
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton9))
                         .addGap(18, 18, 18)
                         .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(77, 77, 77)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(11, 11, 11)
-                            .addComponent(jTextField4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jTextField8))
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(8, 8, 8)))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
         );
 
@@ -481,7 +589,7 @@ public class Defects extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         main_window m4 = new main_window();
         m4.setVisible(true);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -490,192 +598,174 @@ public class Defects extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       String Customer_ID = jTextField1.getText();
-       String Stock_ID = jTextField2.getText();
-       String Stock_Type = jComboBox1.getSelectedItem().toString();
-       String Item_Count = jTextField3.getText();
-       String Total_Additional_Price = jTextField4.getText();
-      
-       
-       try{
-            
-           String q = "INSERT INTO defectsc(Customer_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price)values('"+Customer_ID+"','"+Stock_ID+"','"+Stock_Type+"','"+Item_Count+"','"+Total_Additional_Price+"')";
-           
-           pst = conn.prepareStatement(q);
-           pst.execute();
-           tableload();
-       
-       }
-       catch(Exception e){
-        System.out.println(e.getMessage());
-           
-       }
+        String Customer_ID = jTextField1.getText();
+        String Stock_ID = jTextField2.getText();
+        String Stock_Type = jComboBox1.getSelectedItem().toString();
+        String Item_Count = jTextField3.getText();
+        String Total_Additional_Price = jTextField4.getText();
+
+        try {
+
+            String q = "INSERT INTO defectsc(Customer_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price)values('" + Customer_ID + "','" + Stock_ID + "','" + Stock_Type + "','" + Item_Count + "','" + Total_Additional_Price + "')";
+
+            pst = conn.prepareStatement(q);
+            pst.execute();
+            tableload();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-         int r = jTable1.getSelectedRow();
-         
-       String Customer_ID = jTable1.getValueAt(r,0).toString();
-       String Stock_ID = jTable1.getValueAt(r,1).toString();
-       String Stock_Type = jTable1.getValueAt(r,2).toString();
-       String Item_Count = jTable1.getValueAt(r,3).toString();
-       String Total_Additional_Price = jTable1.getValueAt(r,4).toString();
-       
-       
-       jTextField1.setText(Customer_ID);
-       jTextField2.setText(Stock_ID);
-       jComboBox1.setSelectedItem(Stock_Type);
-       jTextField3.setText(Item_Count);
-       jTextField4.setText(Total_Additional_Price);
-      
+        int r = jTable1.getSelectedRow();
+
+        String Customer_ID = jTable1.getValueAt(r, 0).toString();
+        String Stock_ID = jTable1.getValueAt(r, 1).toString();
+        String Stock_Type = jTable1.getValueAt(r, 2).toString();
+        String Item_Count = jTable1.getValueAt(r, 3).toString();
+        String Total_Additional_Price = jTable1.getValueAt(r, 4).toString();
+
+        jTextField1.setText(Customer_ID);
+        jTextField2.setText(Stock_ID);
+        jComboBox1.setSelectedItem(Stock_Type);
+        jTextField3.setText(Item_Count);
+        jTextField4.setText(Total_Additional_Price);
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        int x = JOptionPane.showConfirmDialog(null , "do you really want to update?");
-       
-       if(x==0)
-       {
-           
-       String Customer_ID = jTextField1.getText();
-       String Stock_ID = jTextField2.getText();
-       String Stock_Type =  jComboBox1.getSelectedItem().toString();
-       String Item_Count = jTextField3.getText();
-       String Total_Additional_Price = jTextField4.getText();
-        
-       
-       String sql = "update defectsc SET Customer_ID = '"+ Customer_ID +"',Stock_ID  = '"+ Stock_ID  +"',Stock_Type '"+ Stock_Type + "',Item_Count = '"+ Item_Count +"',Total_Additional_Price  = '"+ Total_Additional_Price  +"'";
-       
-       try{
-           pst = conn.prepareStatement(sql);
-           pst.execute();
-           tableload();
-       
-       
-       }
-       catch(Exception e){
-       
-           System.out.println(e);
-       }
-       }
+        int x = JOptionPane.showConfirmDialog(null, "do you really want to update?");
+
+        if (x == 0) {
+
+            String Customer_ID = jTextField1.getText();
+            String Stock_ID = jTextField2.getText();
+            String Stock_Type = jComboBox1.getSelectedItem().toString();
+            String Item_Count = jTextField3.getText();
+            String Total_Additional_Price = jTextField4.getText();
+
+            String sql = "update defectsc SET Customer_ID = '" + Customer_ID + "',Stock_ID  = '" + Stock_ID + "',Stock_Type '" + Stock_Type + "',Item_Count = '" + Item_Count + "',Total_Additional_Price  = '" + Total_Additional_Price + "'";
+
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.execute();
+                tableload();
+
+            } catch (Exception e) {
+
+                System.out.println(e);
+            }
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-               
-        int q =JOptionPane.showConfirmDialog(null, "do you really want to delete?");
-        
-        if (q==0){
-                String Customer_ID = jTextField1.getText();
-            
-                String sql = "delete from defectsc where Customer_ID = '"+ Customer_ID +"' ";
-        
-                try{
-            
-            pst = conn.prepareStatement(sql);
-                    pst.execute();
-            
-            tableload();
-        }
-        catch(Exception e){
-        
-                               JOptionPane.showMessageDialog(null ,"Delete opration failed. Try again");
 
-        }
-        
-        
+        int q = JOptionPane.showConfirmDialog(null, "do you really want to delete?");
+
+        if (q == 0) {
+            String Customer_ID = jTextField1.getText();
+
+            String sql = "delete from defectsc where Customer_ID = '" + Customer_ID + "' ";
+
+            try {
+
+                pst = conn.prepareStatement(sql);
+                pst.execute();
+
+                tableload();
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Delete opration failed. Try again");
+
+            }
+
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       String Worker_ID = jTextField5.getText();
-       String Stock_ID = jTextField6.getText();
-       String Stock_Type = jComboBox2.getSelectedItem().toString();
-       String Item_Count = jTextField7.getText();
-       String Total_Additional_Price = jTextField8.getText();
-      
-       
-       try{
-            
-           String q1 = "INSERT INTO defectsw(Worker_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price)values('"+Worker_ID+"','"+Stock_ID+"','"+Stock_Type+"','"+Item_Count+"','"+Total_Additional_Price+"')";
-           
-           pst = conn.prepareStatement(q1);
-           pst.execute();
-           table1load();
-       
-       }
-       catch(Exception e){
-        System.out.println(e.getMessage());
-           
-       }
+        String Worker_ID = jTextField5.getText();
+        String Stock_ID = jTextField6.getText();
+        String Stock_Type = jComboBox2.getSelectedItem().toString();
+        String Item_Count = jTextField7.getText();
+        String Total_Additional_Price = jTextField8.getText();
+
+        try {
+
+            String q1 = "INSERT INTO defectsw(Worker_ID,Stock_ID,Stock_Type,Item_Count,Total_Additional_Price)values('" + Worker_ID + "','" + Stock_ID + "','" + Stock_Type + "','" + Item_Count + "','" + Total_Additional_Price + "')";
+
+            pst = conn.prepareStatement(q1);
+            pst.execute();
+            table1load();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         int r = jTable2.getSelectedRow();
-         
-       String Worker_ID = jTable2.getValueAt(r,0).toString();
-       String Stock_ID = jTable2.getValueAt(r,1).toString();
-       String Stock_Type = jTable2.getValueAt(r,2).toString();
-       String Item_Count = jTable2.getValueAt(r,3).toString();
-       String Total_Additional_Price = jTable2.getValueAt(r,4).toString();
-       
-       
-       jTextField5.setText(Worker_ID);
-       jTextField6.setText(Stock_ID);
-      jComboBox2.setSelectedItem(Stock_Type);
-       jTextField7.setText(Item_Count);
-      jTextField8.setText(Total_Additional_Price);
+
+        String Worker_ID = jTable2.getValueAt(r, 0).toString();
+        String Stock_ID = jTable2.getValueAt(r, 1).toString();
+        String Stock_Type = jTable2.getValueAt(r, 2).toString();
+        String Item_Count = jTable2.getValueAt(r, 3).toString();
+        String Total_Additional_Price = jTable2.getValueAt(r, 4).toString();
+
+        jTextField5.setText(Worker_ID);
+        jTextField6.setText(Stock_ID);
+        jComboBox2.setSelectedItem(Stock_Type);
+        jTextField7.setText(Item_Count);
+        jTextField8.setText(Total_Additional_Price);
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-            int c = JOptionPane.showConfirmDialog(null , "do you really want to update?");
-       
-       if(c==0)
-       {
-           
-       String Worker_ID = jTextField5.getText();
-       String Stock_ID =  jTextField6.getText();
-       String Stock_Type =  jComboBox2.getSelectedItem().toString();
-       String Item_Count = jTextField7.getText();
-       String Total_Additional_Price =  jTextField8.getText();
-        
-       
-       String sql2 = "update defectsw SET Worker_ID = '"+ Worker_ID +"',Stock_ID  = '"+ Stock_ID  +"',Stock_Type ='"+ Stock_Type + "',Item_Count = '"+ Item_Count +"',Total_Additional_Price  = '"+ Total_Additional_Price  +"'";
-       
-       try{
-           pst = conn.prepareStatement(sql2);
-           pst.execute();
-           table1load();
-       
-       
-       }
-       catch(Exception e){
-       
-           System.out.println(e);
-       }
-       }
+        int c = JOptionPane.showConfirmDialog(null, "do you really want to update?");
+
+        if (c == 0) {
+
+            String Worker_ID = jTextField5.getText();
+            String Stock_ID = jTextField6.getText();
+            String Stock_Type = jComboBox2.getSelectedItem().toString();
+            String Item_Count = jTextField7.getText();
+            String Total_Additional_Price = jTextField8.getText();
+
+            String sql2 = "update defectsw SET Worker_ID = '" + Worker_ID + "',Stock_ID  = '" + Stock_ID + "',Stock_Type ='" + Stock_Type + "',Item_Count = '" + Item_Count + "',Total_Additional_Price  = '" + Total_Additional_Price + "'";
+
+            try {
+                pst = conn.prepareStatement(sql2);
+                pst.execute();
+                table1load();
+
+            } catch (Exception e) {
+
+                System.out.println(e);
+            }
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-         int b =JOptionPane.showConfirmDialog(null, "do you really want to delete?");
-        
-        if (b==0){
-                String Worker_ID =jTextField5.getText();
-            
-                String sql3 = "delete from defectsw where Worker_ID = '"+ Worker_ID +"' ";
-        
-                try{
-            
-            pst = conn.prepareStatement(sql3);
-                    pst.execute();
-            
-            table1load();
-        }
-        catch(Exception e){
-                                System.out.println(e);
-                               JOptionPane.showMessageDialog(null ,"Delete opration failed. Try again");
+        int b = JOptionPane.showConfirmDialog(null, "do you really want to delete?");
 
-        }
-        
-        
+        if (b == 0) {
+            String Worker_ID = jTextField5.getText();
+
+            String sql3 = "delete from defectsw where Worker_ID = '" + Worker_ID + "' ";
+
+            try {
+
+                pst = conn.prepareStatement(sql3);
+                pst.execute();
+
+                table1load();
+            } catch (Exception e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(null, "Delete opration failed. Try again");
+
+            }
+
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -715,6 +805,10 @@ public class Defects extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Monthss4;
+    private javax.swing.JLabel clockss4;
+    private javax.swing.JLabel datess4;
+    private javax.swing.JLabel dayss4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -752,5 +846,6 @@ public class Defects extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel yearss4;
     // End of variables declaration//GEN-END:variables
 }

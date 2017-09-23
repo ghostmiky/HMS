@@ -7,6 +7,8 @@ package Interfaces;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -14,12 +16,73 @@ import java.awt.Toolkit;
  */
 public class main_window extends javax.swing.JFrame {
 
-    /**
-     * Creates new form main_window
-     */
+   int time=0;
     public main_window() {
         initComponents();
         setfullscreen();
+        
+               //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss7.setText(clock);
+                    dayss7.setText(day);
+                    yearss7.setText(String.valueOf(year));
+                    Monthss7.setText(String.valueOf(Month));
+                    datess7.setText(String.valueOf(date));
+                }
+            }
+        }.start();
     }
 
      public void setfullscreen() {
@@ -55,6 +118,11 @@ public class main_window extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        Monthss7 = new javax.swing.JLabel();
+        datess7 = new javax.swing.JLabel();
+        yearss7 = new javax.swing.JLabel();
+        clockss7 = new javax.swing.JLabel();
+        dayss7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +154,21 @@ public class main_window extends javax.swing.JFrame {
             }
         });
 
+        Monthss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss7.setText("month");
+
+        datess7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess7.setText("date");
+
+        yearss7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss7.setText("year");
+
+        clockss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss7.setText("jLabel40");
+
+        dayss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss7.setText("AM");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,6 +186,20 @@ public class main_window extends javax.swing.JFrame {
                         .addGap(232, 232, 232)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clockss7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dayss7)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(yearss7)
+                        .addGap(18, 18, 18)
+                        .addComponent(Monthss7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datess7))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,6 +207,15 @@ public class main_window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clockss7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dayss7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(yearss7)
+                            .addComponent(Monthss7)
+                            .addComponent(datess7))
+                        .addGap(44, 44, 44)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(135, 135, 135)
@@ -185,9 +291,14 @@ public class main_window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Monthss7;
+    private javax.swing.JLabel clockss7;
+    private javax.swing.JLabel datess7;
+    private javax.swing.JLabel dayss7;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel yearss7;
     // End of variables declaration//GEN-END:variables
 }

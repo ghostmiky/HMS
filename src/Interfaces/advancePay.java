@@ -21,6 +21,8 @@ import java.awt.Toolkit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 /**
  *
@@ -32,6 +34,7 @@ public class advancePay extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     PreparedStatement pst2 = null;
+    int time=0;
     
     public static double mealprice;
     public static double fullpayment;
@@ -55,6 +58,69 @@ public class advancePay extends javax.swing.JFrame {
         System.out.println("n:"+n);
         
        setfullscreen();
+       
+             //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss6.setText(clock);
+                    dayss6.setText(day);
+                    yearss6.setText(String.valueOf(year));
+                    Monthss6.setText(String.valueOf(Month));
+                    datess6.setText(String.valueOf(date));
+                }
+            }
+        }.start();
         
     }
 
@@ -95,6 +161,11 @@ public class advancePay extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        Monthss6 = new javax.swing.JLabel();
+        datess6 = new javax.swing.JLabel();
+        yearss6 = new javax.swing.JLabel();
+        clockss6 = new javax.swing.JLabel();
+        dayss6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +196,21 @@ public class advancePay extends javax.swing.JFrame {
             }
         });
 
+        Monthss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss6.setText("month");
+
+        datess6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess6.setText("date");
+
+        yearss6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss6.setText("year");
+
+        clockss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss6.setText("jLabel40");
+
+        dayss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss6.setText("AM");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +218,20 @@ public class advancePay extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(279, 279, 279)
                 .addComponent(jLabel1)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clockss6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dayss6)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(yearss6)
+                        .addGap(18, 18, 18)
+                        .addComponent(Monthss6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datess6)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +263,15 @@ public class advancePay extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clockss6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dayss6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(yearss6)
+                    .addComponent(Monthss6)
+                    .addComponent(datess6))
+                .addGap(17, 17, 17)
                 .addComponent(jButton1)
                 .addGap(31, 31, 31)
                 .addComponent(jButton2)
@@ -210,7 +317,7 @@ public class advancePay extends javax.swing.JFrame {
         System.out.println("advance is:"+ad);
         
         return ad;
-        
+       
         
     }
     
@@ -297,6 +404,10 @@ public class advancePay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Monthss6;
+    private javax.swing.JLabel clockss6;
+    private javax.swing.JLabel datess6;
+    private javax.swing.JLabel dayss6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -305,5 +416,6 @@ public class advancePay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel yearss6;
     // End of variables declaration//GEN-END:variables
 }

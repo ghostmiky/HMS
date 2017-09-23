@@ -5,7 +5,6 @@
  */
 package Interfaces;
 
-
 import com.mysql.jdbc.Connection;       //db connection
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,22 +26,83 @@ import prtype.DBconnection;
 
 public class Cater extends javax.swing.JFrame {
 
-    Connection con = null;                       
+    Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
-    
+    int time = 0;
+
     public Cater() {
         initComponents();
         con = DBconnection.connect();
         tableload();
         setfullscreen();
-        
-        
+
+        //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss4.setText(clock);
+                    dayss4.setText(day);
+                    yearss4.setText(String.valueOf(year));
+                    Monthss4.setText(String.valueOf(Month));
+                    datess4.setText(String.valueOf(date));
+                }
+            }
+        }.start();
+
     }
-    
-    
-   public void setfullscreen() {
+
+    public void setfullscreen() {
 
         this.setResizable(false);
 
@@ -65,21 +127,20 @@ public class Cater extends javax.swing.JFrame {
         this.setLocation(locationx, locationy);
 
     }
-    public void tableload(){
-        
+
+    public void tableload() {
+
         try {
             String sqq = "SELECT OrderID,CustomerName,ContactNumber,NumberOfGuests,Address,Description,Deposit,Due,PaymentStatus FROM Corder";
             pst = con.prepareStatement(sqq);
-           rs = pst.executeQuery();
-           
-           jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-           
-           
+            rs = pst.executeQuery();
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
-        
+
     }
 
     /**
@@ -120,6 +181,11 @@ public class Cater extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         duedate = new javax.swing.JTextField();
+        clockss4 = new javax.swing.JLabel();
+        dayss4 = new javax.swing.JLabel();
+        Monthss4 = new javax.swing.JLabel();
+        yearss4 = new javax.swing.JLabel();
+        datess4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Order");
@@ -210,6 +276,7 @@ public class Cater extends javax.swing.JFrame {
 
         OrderID.setText("Order ID");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton1.setText("Add Order");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +285,7 @@ public class Cater extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/delete.png"))); // NOI18N
         jButton2.setText("Remove Order");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +294,7 @@ public class Cater extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/search.png"))); // NOI18N
         jButton3.setText("Search Order");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -234,6 +303,7 @@ public class Cater extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/Update.png"))); // NOI18N
         jButton4.setText("Update Order");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -242,8 +312,10 @@ public class Cater extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setText("Due Orders");
 
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setText("Inventory");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,6 +328,21 @@ public class Cater extends javax.swing.JFrame {
                 duedateActionPerformed(evt);
             }
         });
+
+        clockss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss4.setText("jLabel40");
+
+        dayss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss4.setText("AM");
+
+        Monthss4.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss4.setText("month");
+
+        yearss4.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss4.setText("year");
+
+        datess4.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess4.setText("date");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,81 +373,107 @@ public class Cater extends javax.swing.JFrame {
                     .addComponent(DueDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(duedate)
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(54, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(clockss4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dayss4)
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(yearss4)
+                                .addGap(18, 18, 18)
+                                .addComponent(Monthss4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(datess4)))
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(OrderID))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(NumberOfGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel10))
-                    .addComponent(DueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(duedate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(PaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(OrderID))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(NumberOfGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(Deposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel10))
+                            .addComponent(DueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(duedate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(PaymentStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clockss4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dayss4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(yearss4)
+                            .addComponent(Monthss4)
+                            .addComponent(datess4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -368,36 +481,36 @@ public class Cater extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       food2 f = new food2();    //food2 window
-       f.setVisible(true);
-       this.dispose();
+        food2 f = new food2();    //food2 window
+        f.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                String name = CustomerName.getText();                      // cater order registrations
-                int cnumber = Integer.parseInt(ContactNumber.getText());        //getting data from text fields to variables
-                int nog = Integer.parseInt(NumberOfGuests.getText());
-                String address = Address.getText();
-                String description = Description.getText();
-                double deposit = Double.parseDouble(Deposit.getText());
-                String strdue = ((JTextField)DueDate.getDateEditor().getUiComponent()).getText();
-                String ps = PaymentStatus.getSelectedItem().toString();
-                
-                String cnum = Integer.toString(cnumber);
-                String n = Integer.toString(nog);
-                String dep = Double.toString(deposit);
-                
-                validations v1 = new validations();   // validations
-                boolean vname = v1.vcus(name);
-                boolean vnum = v1.vcus(cnum);
-                boolean c = v1.vcus(n);
-                boolean d = v1.vcus(address);
-                boolean e = v1.vcus(description);
-                boolean f = v1.vcus(dep);
-                boolean g = v1.vcus(strdue);
-                boolean h = v1.vcus(ps);
-                
-               /*System.out.println(name);
+        String name = CustomerName.getText();                      // cater order registrations
+        int cnumber = Integer.parseInt(ContactNumber.getText());        //getting data from text fields to variables
+        int nog = Integer.parseInt(NumberOfGuests.getText());
+        String address = Address.getText();
+        String description = Description.getText();
+        double deposit = Double.parseDouble(Deposit.getText());
+        String strdue = ((JTextField) DueDate.getDateEditor().getUiComponent()).getText();
+        String ps = PaymentStatus.getSelectedItem().toString();
+
+        String cnum = Integer.toString(cnumber);
+        String n = Integer.toString(nog);
+        String dep = Double.toString(deposit);
+
+        validations v1 = new validations();   // validations
+        boolean vname = v1.vcus(name);
+        boolean vnum = v1.vcus(cnum);
+        boolean c = v1.vcus(n);
+        boolean d = v1.vcus(address);
+        boolean e = v1.vcus(description);
+        boolean f = v1.vcus(dep);
+        boolean g = v1.vcus(strdue);
+        boolean h = v1.vcus(ps);
+
+        /*System.out.println(name);
                 System.out.println(cnumber);
                 System.out.println(nog);
                 System.out.println(address);
@@ -405,14 +518,26 @@ public class Cater extends javax.swing.JFrame {
                 System.out.println(deposit);
                 System.out.println(strdue);
                 System.out.println(ps);*/
-                
-                
-        
-        if(vname == true && vnum == true && c == true && d == true && e == true && f == true && g == true && h == true  ){
-        try {
-            String Sq = "INSERT INTO Corder (CustomerName,ContactNumber,NumberOfGuests,Address,Description,Deposit,Due,PaymentStatus) VALUES ('"+ name +"','"+ cnumber +"','"+ nog +"','"+ address +"','"+ description +"','"+ deposit +"','"+ strdue +"','"+ ps +"')";
-            pst=con.prepareStatement(Sq);
-            pst.execute();
+        if (vname == true && vnum == true && c == true && d == true && e == true && f == true && g == true && h == true) {
+            try {
+                String Sq = "INSERT INTO Corder (CustomerName,ContactNumber,NumberOfGuests,Address,Description,Deposit,Due,PaymentStatus) VALUES ('" + name + "','" + cnumber + "','" + nog + "','" + address + "','" + description + "','" + deposit + "','" + strdue + "','" + ps + "')";
+                pst = con.prepareStatement(Sq);
+                pst.execute();
+                CustomerName.setText("");
+                ContactNumber.setText("");
+                NumberOfGuests.setText("");
+                Address.setText("");
+                Description.setText("");
+                Deposit.setText("");
+                DueDate.setToolTipText("");
+                PaymentStatus.setToolTipText("");
+
+                tableload();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+
+            }
+        } else {
             CustomerName.setText("");
             ContactNumber.setText("");
             NumberOfGuests.setText("");
@@ -421,25 +546,9 @@ public class Cater extends javax.swing.JFrame {
             Deposit.setText("");
             DueDate.setToolTipText("");
             PaymentStatus.setToolTipText("");
-            
-            tableload();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            
-        }}else{
-             CustomerName.setText("");
-            ContactNumber.setText("");
-            NumberOfGuests.setText("");
-            Address.setText("");
-            Description.setText("");
-            Deposit.setText("");
-            DueDate.setToolTipText("");
-            PaymentStatus.setToolTipText("");
         }
-        
-                
-                
-             
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -453,7 +562,7 @@ public class Cater extends javax.swing.JFrame {
         String dep = jTable1.getValueAt(r, 6).toString();
         String du = jTable1.getValueAt(r, 7).toString();
         String pss = jTable1.getValueAt(r, 8).toString();
-        
+
         OrderID.setText(id);
         CustomerName.setText(nm);
         ContactNumber.setText(num);
@@ -470,118 +579,115 @@ public class Cater extends javax.swing.JFrame {
     }//GEN-LAST:event_duedateActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      int x = JOptionPane.showConfirmDialog(null, "Confirm Update");      // update cater order 
-      if(x == 0){
-          
-                String id = OrderID.getText();
-                String name = CustomerName.getText();
-                int cnumber = Integer.parseInt(ContactNumber.getText());
-                int nog = Integer.parseInt(NumberOfGuests.getText());
-                String address = Address.getText();
-                String description = Description.getText();
-                double deposit = Double.parseDouble(Deposit.getText());
-                
-                String strdue2 = duedate.getText();
-               // String strdue1 = ((JTextField)DueDate.getDateEditor().getUiComponent()).getText();
-                String ps = PaymentStatus.getSelectedItem().toString();
-                
-                System.out.println(name);
-                System.out.println(cnumber);
-                System.out.println(nog);
-                System.out.println(address);
-                System.out.println(description);
-                System.out.println(deposit);
-                System.out.println(strdue2);
-                System.out.println(ps);
-                
-                
-          try {
-              String ss = "UPDATE corder SET CustomerName = '"+ name +"' , ContactNumber = '"+ cnumber +"' , NumberOfGuests = '"+ nog +"' , Address = '"+ address +"' , Description = '"+ description +"' , Deposit = '"+ deposit +"' , Due = '"+ strdue2 +"' , PaymentStatus = '"+ ps +"' WHERE OrderID = '"+ id +"' ";
-              pst = con.prepareStatement(ss);
-              pst.execute();
-              tableload();
-          } catch (SQLException ex) {
-              System.out.println(ex);
-          }
-                
-                
-                
-      }
-      
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Update");      // update cater order 
+        if (x == 0) {
+
+            String id = OrderID.getText();
+            String name = CustomerName.getText();
+            int cnumber = Integer.parseInt(ContactNumber.getText());
+            int nog = Integer.parseInt(NumberOfGuests.getText());
+            String address = Address.getText();
+            String description = Description.getText();
+            double deposit = Double.parseDouble(Deposit.getText());
+
+            String strdue2 = duedate.getText();
+            // String strdue1 = ((JTextField)DueDate.getDateEditor().getUiComponent()).getText();
+            String ps = PaymentStatus.getSelectedItem().toString();
+
+            System.out.println(name);
+            System.out.println(cnumber);
+            System.out.println(nog);
+            System.out.println(address);
+            System.out.println(description);
+            System.out.println(deposit);
+            System.out.println(strdue2);
+            System.out.println(ps);
+
+            try {
+                String ss = "UPDATE corder SET CustomerName = '" + name + "' , ContactNumber = '" + cnumber + "' , NumberOfGuests = '" + nog + "' , Address = '" + address + "' , Description = '" + description + "' , Deposit = '" + deposit + "' , Due = '" + strdue2 + "' , PaymentStatus = '" + ps + "' WHERE OrderID = '" + id + "' ";
+                pst = con.prepareStatement(ss);
+                pst.execute();
+                tableload();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int x = JOptionPane.showConfirmDialog(null,"Confirm Delete");   // remove cater orders
-       if(x == 0){
-           String idd = OrderID.getText();
-          try{
-           String sss = "DELETE FROM corder WHERE OrderID = '"+ idd +"'";
-           pst = con.prepareStatement(sss);
-           pst.execute();
-           tableload();
-          }catch(SQLException ex){
-              System.out.println(ex);
-          }
-       }
+        int x = JOptionPane.showConfirmDialog(null, "Confirm Delete");   // remove cater orders
+        if (x == 0) {
+            String idd = OrderID.getText();
+            try {
+                String sss = "DELETE FROM corder WHERE OrderID = '" + idd + "'";
+                pst = con.prepareStatement(sss);
+                pst.execute();
+                tableload();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       String cont = ContactNumber.getText();                               // getting the info from database to jTable
-        String sl = "SELECT * FROM corder WHERE ContactNumber = '"+ cont +"'";
+        String cont = ContactNumber.getText();                               // getting the info from database to jTable
+        String sl = "SELECT * FROM corder WHERE ContactNumber = '" + cont + "'";
         try {
             pst = con.prepareStatement(sl);
             rs = pst.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Cater.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ContactNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ContactNumberKeyTyped
         char a = evt.getKeyChar();                  // validation  (not allowing the blank spaces)
-        
-        if(!(Character.isDigit(a) || a == KeyEvent.VK_BACK_SPACE)){
+
+        if (!(Character.isDigit(a) || a == KeyEvent.VK_BACK_SPACE)) {
             getToolkit().beep();
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_ContactNumberKeyTyped
 
     private void CustomerNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CustomerNameKeyTyped
-       char b = evt.getKeyChar();
-       
-       if(!(Character.isLetter(b) || b == KeyEvent.VK_BACK_SPACE )){
-           getToolkit().beep();
-           evt.consume();
-       }
+        char b = evt.getKeyChar();
+
+        if (!(Character.isLetter(b) || b == KeyEvent.VK_BACK_SPACE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
     }//GEN-LAST:event_CustomerNameKeyTyped
 
     private void NumberOfGuestsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NumberOfGuestsKeyTyped
-       char c = evt.getKeyChar();
-       
-       if(!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE)){
-           getToolkit().beep();
-           evt.consume();
-       }
+        char c = evt.getKeyChar();
+
+        if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE)) {
+            getToolkit().beep();
+            evt.consume();
+        }
     }//GEN-LAST:event_NumberOfGuestsKeyTyped
 
     private void DepositKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DepositKeyTyped
         char d = evt.getKeyChar();
-        
-        if(!(Character.isDigit(d) || d == KeyEvent.VK_BACK_SPACE)){
+
+        if (!(Character.isDigit(d) || d == KeyEvent.VK_BACK_SPACE)) {
             getToolkit().beep();
             evt.consume();
-            
+
         }
     }//GEN-LAST:event_DepositKeyTyped
 
     /**
      * @param args the command line arguments
      */
-   public static void main(String args[]) {      // main method
+    public static void main(String args[]) {      // main method
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -612,7 +718,7 @@ public class Cater extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Address;
     private javax.swing.JTextField ContactNumber;
@@ -620,9 +726,13 @@ public class Cater extends javax.swing.JFrame {
     private javax.swing.JTextField Deposit;
     private javax.swing.JTextArea Description;
     private com.toedter.calendar.JDateChooser DueDate;
+    private javax.swing.JLabel Monthss4;
     private javax.swing.JTextField NumberOfGuests;
     private javax.swing.JLabel OrderID;
     private javax.swing.JComboBox<String> PaymentStatus;
+    private javax.swing.JLabel clockss4;
+    private javax.swing.JLabel datess4;
+    private javax.swing.JLabel dayss4;
     private javax.swing.JTextField duedate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -643,5 +753,6 @@ public class Cater extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel yearss4;
     // End of variables declaration//GEN-END:variables
 }

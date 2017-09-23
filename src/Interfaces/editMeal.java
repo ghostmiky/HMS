@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -23,6 +25,7 @@ public class editMeal extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    int time=0;
     
     public editMeal() {
         
@@ -38,6 +41,69 @@ public class editMeal extends javax.swing.JFrame {
         tableloadPrice ();
         extratable ();
         setfullscreen();
+        
+              //CLOCK
+        new Thread() {
+            public void run() {
+                while (time == 0) {
+                    Calendar cal = new GregorianCalendar();
+
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int ampm = cal.get(Calendar.AM_PM);
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH);
+                    int date = cal.get(Calendar.DATE);
+
+                    String day = "", Month = "";
+                    if (hour == 0 && ampm == 1) {
+                        hour = 12;
+                    }
+                    //AM PM
+                    if (ampm == 1) {
+                        day = "PM";
+                    } else {
+                        day = "AM";
+                    }
+
+                    //MONTH
+                    if (month == 0) {
+                        Month = "January";
+                    } else if (month == 1) {
+                        Month = "February";
+                    } else if (month == 2) {
+                        Month = "March";
+                    } else if (month == 3) {
+                        Month = "April";
+                    } else if (month == 4) {
+                        Month = "May";
+                    } else if (month == 5) {
+                        Month = "June";
+                    } else if (month == 6) {
+                        Month = "July";
+                    } else if (month == 7) {
+                        Month = "August";
+                    } else if (month == 8) {
+                        Month = "September";
+                    } else if (month == 9) {
+                        Month = "October";
+                    } else if (month == 10) {
+                        Month = "November";
+                    } else if (month == 11) {
+                        Month = "December";
+                    }
+                    String clock = hour + ":" + min + ":" + sec + " ";
+                    String today = year + " " + Month + " " + date;
+
+                    clockss6.setText(clock);
+                    dayss6.setText(day);
+                    yearss6.setText(String.valueOf(year));
+                    Monthss6.setText(String.valueOf(Month));
+                    datess6.setText(String.valueOf(date));
+                }
+            }
+        }.start();
         
     }
 
@@ -265,6 +331,11 @@ public class editMeal extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Monthss6 = new javax.swing.JLabel();
+        datess6 = new javax.swing.JLabel();
+        yearss6 = new javax.swing.JLabel();
+        clockss6 = new javax.swing.JLabel();
+        dayss6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1273,7 +1344,22 @@ public class editMeal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("   Extra   ", jPanel2);
 
-        jLabel1.setText("  Mead Edit   ");
+        jLabel1.setText("  Meal Edit   ");
+
+        Monthss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        Monthss6.setText("month");
+
+        datess6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        datess6.setText("date");
+
+        yearss6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        yearss6.setText("year");
+
+        clockss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        clockss6.setText("jLabel40");
+
+        dayss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
+        dayss6.setText("AM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1282,15 +1368,39 @@ public class editMeal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(270, 270, 270)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clockss6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dayss6)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(yearss6)
+                        .addGap(18, 18, 18)
+                        .addComponent(Monthss6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datess6))))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clockss6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dayss6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(yearss6)
+                            .addComponent(Monthss6)
+                            .addComponent(datess6))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(451, 451, 451))
         );
@@ -2004,6 +2114,10 @@ public class editMeal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Monthss6;
+    private javax.swing.JLabel clockss6;
+    private javax.swing.JLabel datess6;
+    private javax.swing.JLabel dayss6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2099,5 +2213,6 @@ public class editMeal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel yearss6;
     // End of variables declaration//GEN-END:variables
 }
