@@ -6,6 +6,8 @@
 package Interfaces;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,6 +38,7 @@ public class Cashier extends javax.swing.JFrame {
         temptableload();
         devtableload();
         billtableload();
+        setfullscreen();
 
         //CLOCK
         new Thread() {
@@ -101,6 +104,33 @@ public class Cashier extends javax.swing.JFrame {
         }.start();
     }
 
+    
+    
+    public void setfullscreen() {
+
+        this.setResizable(false);
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+
+        int xsize = (int) kit.getScreenSize().getWidth();
+        int ysize = (int) kit.getScreenSize().getHeight();
+
+        int x = (xsize * 84) / 100;
+        int y = (ysize * 84) / 100;
+
+        this.setSize(x, y);//set size
+
+        //moving to the center
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int Width = this.getSize().width;
+        int Height = this.getSize().height;
+
+        int locationx = (dimension.width - Width) / 2;
+        int locationy = (dimension.height - Height) / 2;
+
+        this.setLocation(locationx, locationy);
+
+    }
     public void tableload2() {
         try {
             String s = "select * from fdorder";
@@ -550,14 +580,16 @@ public class Cashier extends javax.swing.JFrame {
                         .addComponent(jButton5)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jButton10)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                        .addComponent(jButton10)
+                        .addGap(0, 439, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -839,10 +871,10 @@ public class Cashier extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(clockss4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clockss4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dayss4)
-                        .addGap(39, 39, 39))
+                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(yearss4)
                         .addGap(18, 18, 18)

@@ -94,11 +94,11 @@ public class food2 extends javax.swing.JFrame {
                     String clock = hour + ":" + min + ":" + sec + " ";
                     String today = year + " " + Month + " " + date;
 
-                    clockss6.setText(clock);
-                    dayss6.setText(day);
-                    yearss6.setText(String.valueOf(year));
-                    Monthss6.setText(String.valueOf(Month));
-                    datess6.setText(String.valueOf(date));
+                    clockss7.setText(clock);
+                    dayss7.setText(day);
+                    yearss7.setText(String.valueOf(year));
+                    Monthss7.setText(String.valueOf(Month));
+                    datess7.setText(String.valueOf(date));
                 }
             }
         }.start();
