@@ -203,7 +203,10 @@ public class HeadChef extends javax.swing.JFrame {
         Monthss4 = new javax.swing.JLabel();
         datess4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+<<<<<<< HEAD
         jButton19 = new javax.swing.JButton();
+=======
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,7 +275,11 @@ public class HeadChef extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(orderidbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(88, 88, 88)
+<<<<<<< HEAD
                         .addComponent(jButton2)))
+=======
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
@@ -406,6 +413,7 @@ public class HeadChef extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/power-button-md.png"))); // NOI18N
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,6 +421,8 @@ public class HeadChef extends javax.swing.JFrame {
             }
         });
 
+=======
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -428,8 +438,11 @@ public class HeadChef extends javax.swing.JFrame {
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
+<<<<<<< HEAD
                         .addGap(18, 18, 18)
                         .addComponent(jButton19)
+=======
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(yearss4)
                         .addGap(18, 18, 18)
@@ -456,9 +469,13 @@ public class HeadChef extends javax.swing.JFrame {
                             .addComponent(datess4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton19)
                             .addComponent(jButton1))
+=======
+                        .addComponent(jButton1)
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
                         .addGap(26, 26, 26)))
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -566,12 +583,15 @@ public class HeadChef extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+<<<<<<< HEAD
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         loggin log=new loggin();
         log.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton19ActionPerformed
 
+=======
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
     /**
      * @param args the command line arguments
      */
@@ -615,7 +635,10 @@ public class HeadChef extends javax.swing.JFrame {
     private javax.swing.JLabel datess4;
     private javax.swing.JLabel dayss4;
     private javax.swing.JButton jButton1;
+<<<<<<< HEAD
     private javax.swing.JButton jButton19;
+=======
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

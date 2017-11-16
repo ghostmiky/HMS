@@ -242,7 +242,11 @@ public class Cust extends javax.swing.JFrame {
         jLabel4.setText("Select Vehicle");
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+<<<<<<< HEAD
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/select.png"))); // NOI18N
+=======
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/car.png"))); // NOI18N
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
         jButton4.setText("Select Tour");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,6 +401,7 @@ public class Cust extends javax.swing.JFrame {
                                 .addGap(167, 167, 167)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -409,6 +414,11 @@ public class Cust extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addGap(52, 52, 52)
                                 .addComponent(jButton19)
+=======
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

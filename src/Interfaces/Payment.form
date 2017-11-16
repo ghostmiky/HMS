@@ -67,7 +67,11 @@
                       <Component id="datess6" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+<<<<<<< HEAD
               <EmptySpace max="-2" attributes="0"/>
+=======
+              <EmptySpace pref="101" max="32767" attributes="0"/>
+>>>>>>> e2e8b9323c4c1ae2251ae7997405e427845094d4
           </Group>
       </Group>
     </DimensionLayout>
