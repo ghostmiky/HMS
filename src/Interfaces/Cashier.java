@@ -265,21 +265,25 @@ public class Cashier extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Date");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Bill no");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Amount");
 
+        amountbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         amountbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amountboxActionPerformed(evt);
             }
         });
 
+        jTable2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -345,7 +349,7 @@ public class Cashier extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(523, Short.MAX_VALUE))
+                .addContainerGap(543, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,17 +379,18 @@ public class Cashier extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("      Bill     ", jPanel2);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Order ID");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Table no");
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -393,9 +398,10 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Food ID");
 
+        foodbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         foodbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 foodboxActionPerformed(evt);
@@ -407,12 +413,13 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Quantity");
 
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -421,7 +428,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton2.setText("Add more");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -448,7 +455,7 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/delete.png"))); // NOI18N
         jButton3.setText("Cancel order");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -457,16 +464,17 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        ans.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ansActionPerformed(evt);
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Total amount");
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setText("Print Bill");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,6 +482,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Order ID");
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -494,9 +503,10 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTable4);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setText("Price");
 
+        pricebox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pricebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priceboxActionPerformed(evt);
@@ -508,7 +518,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/delete.png"))); // NOI18N
         jButton5.setText("Cancel add more ");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -517,7 +527,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton13.setText("Add to total");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -582,7 +592,7 @@ public class Cashier extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jButton10)
-                        .addGap(0, 439, Short.MAX_VALUE))
+                        .addGap(0, 452, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1))
@@ -637,24 +647,24 @@ public class Cashier extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(ans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("     Order    ", jPanel1);
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Name");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("Address");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("Buildings");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel15.setText("Land marks");
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton8.setText("Order now");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -663,7 +673,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/reset.png"))); // NOI18N
         jButton9.setText("Reset");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -672,30 +682,35 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
+        namebox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         namebox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nameboxKeyTyped(evt);
             }
         });
 
+        landbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         landbox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 landboxKeyTyped(evt);
             }
         });
 
+        addressbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         addressbox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 addressboxKeyTyped(evt);
             }
         });
 
+        buildingbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buildingbox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 buildingboxKeyTyped(evt);
             }
         });
 
+        jTable3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -714,7 +729,7 @@ public class Cashier extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable3);
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/Update.png"))); // NOI18N
         jButton11.setText("Update");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -723,7 +738,7 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/delete.png"))); // NOI18N
         jButton12.setText("Cancel order");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -732,9 +747,10 @@ public class Cashier extends javax.swing.JFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel19.setText("Contact no");
 
+        contactbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contactbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contactboxActionPerformed(evt);
@@ -829,11 +845,12 @@ public class Cashier extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(121, 167, Short.MAX_VALUE))
+                .addGap(121, 144, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Delivery", jPanel3);
 
+        jButton14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/food.png"))); // NOI18N
         jButton14.setText("HeadChef");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -866,7 +883,7 @@ public class Cashier extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton14)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
