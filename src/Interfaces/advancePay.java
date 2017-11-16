@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import prtype.DBconnection;
+
 import static Interfaces.confirm.cid;
 import static Interfaces.confirm.rid;
 import static Interfaces.confirm2.hid;
@@ -21,9 +21,8 @@ import java.awt.Toolkit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import prtype.DBconnection;
 /**
  *
  * @author DELL
@@ -34,7 +33,6 @@ public class advancePay extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     PreparedStatement pst2 = null;
-    int time=0;
     
     public static double mealprice;
     public static double fullpayment;
@@ -57,74 +55,13 @@ public class advancePay extends javax.swing.JFrame {
         jLabel5.setText(n);
         System.out.println("n:"+n);
         
-       setfullscreen();
-       
-             //CLOCK
-        new Thread() {
-            public void run() {
-                while (time == 0) {
-                    Calendar cal = new GregorianCalendar();
-
-                    int hour = cal.get(Calendar.HOUR);
-                    int min = cal.get(Calendar.MINUTE);
-                    int sec = cal.get(Calendar.SECOND);
-                    int ampm = cal.get(Calendar.AM_PM);
-                    int year = cal.get(Calendar.YEAR);
-                    int month = cal.get(Calendar.MONTH);
-                    int date = cal.get(Calendar.DATE);
-
-                    String day = "", Month = "";
-                    if (hour == 0 && ampm == 1) {
-                        hour = 12;
-                    }
-                    //AM PM
-                    if (ampm == 1) {
-                        day = "PM";
-                    } else {
-                        day = "AM";
-                    }
-
-                    //MONTH
-                    if (month == 0) {
-                        Month = "January";
-                    } else if (month == 1) {
-                        Month = "February";
-                    } else if (month == 2) {
-                        Month = "March";
-                    } else if (month == 3) {
-                        Month = "April";
-                    } else if (month == 4) {
-                        Month = "May";
-                    } else if (month == 5) {
-                        Month = "June";
-                    } else if (month == 6) {
-                        Month = "July";
-                    } else if (month == 7) {
-                        Month = "August";
-                    } else if (month == 8) {
-                        Month = "September";
-                    } else if (month == 9) {
-                        Month = "October";
-                    } else if (month == 10) {
-                        Month = "November";
-                    } else if (month == 11) {
-                        Month = "December";
-                    }
-                    String clock = hour + ":" + min + ":" + sec + " ";
-                    String today = year + " " + Month + " " + date;
-
-                    clockss6.setText(clock);
-                    dayss6.setText(day);
-                    yearss6.setText(String.valueOf(year));
-                    Monthss6.setText(String.valueOf(Month));
-                    datess6.setText(String.valueOf(date));
-                }
-            }
-        }.start();
+        setfullscreen();
+        
+        
         
     }
 
-  public void setfullscreen() {
+      public void setfullscreen() { //screen adjustment function
 
         this.setResizable(false);
 
@@ -133,8 +70,8 @@ public class advancePay extends javax.swing.JFrame {
         int xsize = (int) kit.getScreenSize().getWidth();
         int ysize = (int) kit.getScreenSize().getHeight();
 
-        int x = xsize / 2;
-        int y = ysize / 2;
+        int x = xsize/2;
+        int y = ysize/2;
 
         this.setSize(x, y);//set size
 
@@ -161,20 +98,20 @@ public class advancePay extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Monthss6 = new javax.swing.JLabel();
-        datess6 = new javax.swing.JLabel();
-        yearss6 = new javax.swing.JLabel();
-        clockss6 = new javax.swing.JLabel();
-        dayss6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Payment Details");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Full Payment");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Advance payment");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/money.png"))); // NOI18N
         jButton1.setText("Pay and confirm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +119,8 @@ public class advancePay extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/back.png"))); // NOI18N
         jButton2.setText("Back to previous");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +128,8 @@ public class advancePay extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/Update.png"))); // NOI18N
         jButton3.setText("update stock");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,88 +137,60 @@ public class advancePay extends javax.swing.JFrame {
             }
         });
 
-        Monthss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        Monthss6.setText("month");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        datess6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
-        datess6.setText("date");
-
-        yearss6.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
-        yearss6.setText("year");
-
-        clockss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        clockss6.setText("jLabel40");
-
-        dayss6.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        dayss6.setText("AM");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(clockss6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dayss6)
-                        .addGap(27, 27, 27))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(yearss6)
-                        .addGap(18, 18, 18)
-                        .addComponent(Monthss6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(datess6)))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(54, 54, 54)
+                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(133, 133, 133))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(370, 370, 370))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clockss6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dayss6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(yearss6)
-                    .addComponent(Monthss6)
-                    .addComponent(datess6))
-                .addGap(17, 17, 17)
-                .addComponent(jButton1)
-                .addGap(31, 31, 31)
-                .addComponent(jButton2)
-                .addGap(32, 32, 32)
-                .addComponent(jButton3)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton2)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,7 +230,7 @@ public class advancePay extends javax.swing.JFrame {
         System.out.println("advance is:"+ad);
         
         return ad;
-       
+        
         
     }
     
@@ -394,6 +307,12 @@ public class advancePay extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -404,10 +323,6 @@ public class advancePay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Monthss6;
-    private javax.swing.JLabel clockss6;
-    private javax.swing.JLabel datess6;
-    private javax.swing.JLabel dayss6;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -416,6 +331,5 @@ public class advancePay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel yearss6;
     // End of variables declaration//GEN-END:variables
 }

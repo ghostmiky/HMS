@@ -168,5 +168,13 @@ public class validations {
             return true;
     }
     
+    public boolean namevalidate(String name){
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(null,"FILL THE NAME FIELD");
+            return false;
+        }
+        else 
+            return true;
+        }
 
 }

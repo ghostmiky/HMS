@@ -119,7 +119,7 @@ public class loggin extends javax.swing.JFrame {
         if (success == true) {
 
             if (usernm.contains("manager") && pass.contains("manager123")) {
-                admin a = new admin();
+                hub a = new hub();
                 a.setVisible(true);
                 this.dispose();
             } else {
@@ -132,6 +132,10 @@ public class loggin extends javax.swing.JFrame {
                     h.jButton6.setEnabled(false);
                     h.jButton7.setEnabled(false);
                     h.jButton8.setEnabled(false);
+                    h.jButton10.setEnabled(false);
+                    h.jButton11.setEnabled(false);
+                    h.jButton12.setEnabled(false);
+                   
 
                     h.setVisible(true);
                     this.dispose();
@@ -144,6 +148,9 @@ public class loggin extends javax.swing.JFrame {
                     h.jButton4.setEnabled(false);
                     h.jButton7.setEnabled(false);
                     h.jButton8.setEnabled(false);
+                    h.jButton10.setEnabled(false);
+                    h.jButton11.setEnabled(false);
+                    h.jButton12.setEnabled(false);
 
                     h.setVisible(true);
                     this.dispose();
@@ -156,15 +163,14 @@ public class loggin extends javax.swing.JFrame {
                     h.jButton6.setEnabled(false);
                     h.jButton7.setEnabled(false);
                     h.jButton8.setEnabled(false);
+                    h.jButton10.setEnabled(false);
+                    h.jButton11.setEnabled(false);
+                    h.jButton12.setEnabled(false);
 
                     h.setVisible(true);
                     this.dispose();
                 }
-                 else if(usernm.contains("manageall")){
-                     hub h = new hub();
-                     h.setVisible(true);
-                     this.dispose();
-                 }
+                
                 
             }
         } else {

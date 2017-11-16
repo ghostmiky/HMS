@@ -127,7 +127,7 @@ public class stock extends javax.swing.JFrame {
    public void tableload()
     {
         try{
-            String sql = "SELECT Stock_ID,Stock_Name,Stock_Type,unit_price,Stock_count,Stock_left,Date,Description,total_price FROM stocks";
+            String sql = "SELECT StockID,StockName,StockType,unitprice,Stockcount,Stockleft,Date,Description,totprice FROM stocks";
             
             pst = conn.prepareStatement(sql);
             rs =pst.executeQuery();
@@ -136,7 +136,7 @@ public class stock extends javax.swing.JFrame {
         }
         catch(Exception e){
         
-        
+        System.out.println(e.getMessage());
         
         }
     
@@ -149,7 +149,7 @@ public class stock extends javax.swing.JFrame {
    public void tableload1()
     {
         try{
-            String sql1 = "SELECT Bill_ID,Bill_type,Amount,Month,Total FROM hotelbills";
+            String sql1 = "SELECT BillID,Billtype,Amount,Month,Total FROM hotelbills";
             
             pst = conn.prepareStatement(sql1);
             rs =pst.executeQuery();
@@ -227,24 +227,34 @@ public class stock extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Stock_ID  ");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Stock_Name  ");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Stock_type  ");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Unit_price  ");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Stock_Count");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Stock_left  ");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Date  ");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Description");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Total Price  ");
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -256,6 +266,7 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -267,6 +278,7 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select", "fragile", "non fragile" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,30 +286,37 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField3KeyTyped(evt);
             }
         });
 
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField4KeyTyped(evt);
             }
         });
 
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField5KeyTyped(evt);
             }
         });
 
+        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField7KeyTyped(evt);
             }
         });
 
+        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -316,6 +335,7 @@ public class stock extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jTable2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -338,30 +358,47 @@ public class stock extends javax.swing.JFrame {
 
         jButton2.setText("SUBMIT");
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("CALCULATE");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Bill_type");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Amount  ");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("Month");
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setText("Total  ");
 
+        jTextField10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
         jTextField10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField10KeyTyped(evt);
             }
         });
 
+        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "select", "water bil", "current billl" }));
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton4.setText("STOCK REPORT");
 
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setText("BILL REPORT");
 
         jButton6.setText("CALCULATE");
 
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton7.setText("ADD");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,12 +406,31 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setText("DELETE");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
+        jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setText("UPDATE");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
+        jButton10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton10.setText("REFRESH");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
+        jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton11.setText("BACK");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,8 +438,10 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setText("Bill_ID");
 
+        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -395,6 +453,7 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton12.setText("ADD");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +461,7 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton13.setText("UPDATE");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,6 +469,7 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton14.setText("DELETE");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,7 +477,13 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        jButton15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton15.setText("REFRESH");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jDateChooser1.setDateFormatString("yyyy/MM/dd");
 
@@ -473,22 +540,22 @@ public class stock extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(6, 6, 6)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, 133, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField7)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                            .addComponent(jTextField5))
                         .addGap(5, 5, 5)))
                 .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
                 .addGap(61, 61, 61)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
@@ -516,16 +583,16 @@ public class stock extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                 .addGap(464, 464, 464)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
+                                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -536,44 +603,44 @@ public class stock extends javax.swing.JFrame {
                                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(500, 500, 500)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))))
+                                    .addComponent(jButton15, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(468, Short.MAX_VALUE)
-                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                .addContainerGap(469, Short.MAX_VALUE)
+                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                                 .addGap(247, 247, 247))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                                 .addGap(592, 592, 592)))
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, 137, Short.MAX_VALUE)
+                        .addComponent(jComboBox2, 0, 134, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jMonthChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(4, 4, 4))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                         .addGap(1, 1, 1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -684,16 +751,16 @@ public class stock extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                                    .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextField12)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(56, 56, 56))
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(49, 49, 49)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(9, 9, 9))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
@@ -703,7 +770,7 @@ public class stock extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
-                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -716,7 +783,7 @@ public class stock extends javax.swing.JFrame {
                                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(52, 52, 52))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -759,7 +826,7 @@ public class stock extends javax.swing.JFrame {
         String total_price =  jTextField8.getText(); 
          try{
            
-           String q = "INSERT INTO stocks (Stock_ID,Stock_Name,Stock_Type,unit_price,Stock_count,Stock_left,Date, Description,total_price) VALUES ('" +Stock_ID+ "','" +Stock_Name+ "','" +Stock_Type+ "','" +unit_price+ "','" +Stock_count+ "','"+Stock_left+"','" +Date+ "','" +Description+ "','" +total_price+ "')";
+           String q = "INSERT INTO stocks (StockID,StockName,StockType,unitprice,Stockcount,Stockleft,Date, Description,totprice) VALUES ('" +Stock_ID+ "','" +Stock_Name+ "','" +Stock_Type+ "','" +unit_price+ "','" +Stock_count+ "','"+Stock_left+"','" +Date+ "','" +Description+ "','" +total_price+ "')";
            
            pst = conn.prepareStatement(q);
            pst.execute();
@@ -790,7 +857,7 @@ public class stock extends javax.swing.JFrame {
            
            try{
                conn = DBconnection.connect();
-               String r = "INSERT INTO hotelbills(Bill_ID,Bill_type,Amount,Month,Total)values('" +Bill_ID+ "','" +Bill_type+ "','" +Amount+ "','" +Month+ "','" +Total+ "')";
+               String r = "INSERT INTO hotelbills(BillID,Billtype,Amount,Month,Total)values('" +Bill_ID+ "','" +Bill_type+ "','" +Amount+ "','" +Month+ "','" +Total+ "')";
                
                pst = conn.prepareStatement(r);
                pst.execute();
@@ -810,20 +877,24 @@ public class stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-         int r = jTable2.getSelectedRow();
-         
-       String Bill_ID = jTable2.getValueAt(r,0).toString();
-       String Bill_type = jTable2.getValueAt(r,1).toString();
-       String Amount = jTable2.getValueAt(r,2).toString();
-       String Month = jTable2.getValueAt(r,3).toString();
-       String Total = jTable2.getValueAt(r,4).toString();
-       
-       
-       jTextField9.setText(Bill_ID);   
-       jComboBox2.setSelectedItem(Bill_type);
-       jTextField10.setText(Amount);
-       //jTextField4.setText(Month);
-       jTextField12.setText(Total);
+       try {
+           int r = jTable2.getSelectedRow();
+           
+           String Bill_ID = jTable2.getValueAt(r,0).toString();
+           String Bill_type = jTable2.getValueAt(r,1).toString();
+           String Amount = jTable2.getValueAt(r,2).toString();
+           String Month = jTable2.getValueAt(r,3).toString();
+           String Total = jTable2.getValueAt(r,4).toString();
+           
+           
+           jTextField9.setText(Bill_ID);
+           jComboBox2.setSelectedItem(Bill_type);
+           jTextField10.setText(Amount);
+           jMonthChooser1.setMonth((new SimpleDateFormat("MMMM").parse(Month)).getMonth());
+           jTextField12.setText(Total);
+       } catch (ParseException ex) {
+           Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+       }
        
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -837,14 +908,15 @@ public class stock extends javax.swing.JFrame {
            
            String Bill_ID = jTextField9.getText();
            String Bill_type = jComboBox2.getSelectedItem().toString();
-           String Amount = jTextField3.getText();SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+           String Amount = jTextField10.getText();
+           SimpleDateFormat monthParse = new SimpleDateFormat("MM");
            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM");
            int monthInt =jMonthChooser1.getMonth()+1;
            String Month = dateFormat.format(monthParse.parse(String.valueOf(monthInt)));
-           String Total = jTextField5.getText();
+           String Total = jTextField12.getText();
            
            
-           String sql2 = "update hotelbills SET Bill_ID = '"+ Bill_ID +"',Bill_type = '"+ Bill_type +"',Amount = '"+ Amount + "',Total = '"+ Total +"'";
+           String sql2 = "update hotelbills SET Billtype = '"+ Bill_type +"',Amount = '"+ Amount + "',Total = '"+ Total +"' where BillID = '"+ Bill_ID +"'"  ;
            
            try{
                pst = conn.prepareStatement(sql2);
@@ -871,7 +943,7 @@ public class stock extends javax.swing.JFrame {
         if (y==0){
                 String Bill_ID = jTextField9.getText();
             
-                String sql = "delete from hotelbills where Bill_ID = '"+ Bill_ID +"' ";
+                String sql = "delete from hotelbills where BillID = '"+ Bill_ID +"' ";
         
                 try{
             
@@ -891,7 +963,35 @@ public class stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+       try {
+           int r = jTable1.getSelectedRow();
+           
+           
+           
+           String Stock_ID = jTable1.getValueAt(r,0).toString();
+           String Stock_Name = jTable1.getValueAt(r,1).toString();
+           String Stock_Type = jTable1.getValueAt(r,2).toString();
+           String unit_price = jTable1.getValueAt(r,3).toString();
+           String Stock_count = jTable1.getValueAt(r,4).toString();
+           String Stock_left = jTable1.getValueAt(r,5).toString();
+           String Date = jTable1.getValueAt(r,6).toString();
+           String Description = jTable1.getValueAt(r,7).toString();
+           String total_price =  jTable1.getValueAt(r,8).toString();
+           
+           jTextField1.setText(Stock_ID);
+           jTextField2.setText(Stock_Name);
+           jComboBox1.setSelectedItem(Stock_Type);
+           jTextField3.setText(unit_price);
+           jTextField4.setText(Stock_count);
+           jTextField5.setText(Stock_left);
+           jDateChooser1.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(Date));
+           jTextField7.setText(Description);
+           jTextField8.setText(total_price);          
+           
+          
+       } catch (ParseException ex) {
+           Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -1022,6 +1122,93 @@ public class stock extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField7KeyTyped
 
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int y =JOptionPane.showConfirmDialog(null, "do you really want to delete?");
+        
+        if (y==0){
+                String Stock_ID = jTextField1.getText();
+            
+                String sql = "delete from stocks where StockID = '"+ Stock_ID +"' ";
+        
+                try{
+            
+            pst = conn.prepareStatement(sql);
+                    pst.execute();
+            
+            tableload();
+        }
+        catch(Exception e){
+        
+                               JOptionPane.showMessageDialog(null ,"Delete opration failed. Try again");
+
+        }
+        
+        
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+            int x = JOptionPane.showConfirmDialog(null , "do you really want to update?");
+       
+       if(x==0)
+       {
+           
+        String Stock_ID = jTextField1.getText();
+        String Stock_Name = jTextField2.getText();
+        String Stock_Type = jComboBox1.getSelectedItem().toString();
+        String unit_price = jTextField3.getText();
+        String Stock_count = jTextField4.getText();
+        String Stock_left = jTextField5.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String Date = dateFormat.format(jDateChooser1.getDate());
+        String Description = jTextField7.getText();
+        String total_price =  jTextField8.getText(); 
+         try{
+           
+           String q = "UPDATE stocks SET StockName='" +Stock_Name+ "',StockType='" +Stock_Type+ "',unitprice='" +unit_price+ "',Stockcount='" +Stock_count+ "',Stockleft='"+Stock_left+"',Date='" +Date+ "', Description='" +Description+ "',totprice='" +total_price+ "' WHERE StockID='" +Stock_ID+ "'";
+           
+           pst = conn.prepareStatement(q);
+           pst.execute();
+           tableload();
+       }
+       catch(Exception e){
+               
+               System.out.println(e.getMessage());
+           }
+       }
+       
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+         jTextField1.setText(null);
+           jTextField2.setText(null);
+           jComboBox1.setSelectedItem(null);
+           jTextField3.setText(null);
+           jTextField4.setText(null);
+           jTextField5.setText(null);
+           jDateChooser1.setDate(null);
+           jTextField7.setText(null);
+           jTextField8.setText(null);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+       try {
+           jTextField9.setText(null);
+           jComboBox2.setSelectedItem(null);
+           jTextField10.setText(null);
+           Calendar cal = Calendar.getInstance();
+           
+           jMonthChooser1.setMonth((new SimpleDateFormat("MMMM").parse(new SimpleDateFormat("MMM").format(cal.getTime()))).getMonth());
+           jTextField12.setText(null);
+       } catch (ParseException ex) {
+           Logger.getLogger(stock.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1047,6 +1234,7 @@ public class stock extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(stock.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
