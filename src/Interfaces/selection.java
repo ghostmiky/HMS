@@ -6,7 +6,6 @@
  */
 package Interfaces;
 
-
 import com.mysql.jdbc.Connection;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Dimension;
@@ -16,8 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import prtype.DBconnection;
 
@@ -36,7 +35,6 @@ public class selection extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    int time=0;
     
     public selection() {
         
@@ -44,72 +42,52 @@ public class selection extends javax.swing.JFrame {
         conn = DBconnection.connect();
         setfullscreen();
         
-               //CLOCK
-        new Thread() {
-            public void run() {
-                while (time == 0) {
-                    Calendar cal = new GregorianCalendar();
-
-                    int hour = cal.get(Calendar.HOUR);
-                    int min = cal.get(Calendar.MINUTE);
-                    int sec = cal.get(Calendar.SECOND);
-                    int ampm = cal.get(Calendar.AM_PM);
-                    int year = cal.get(Calendar.YEAR);
-                    int month = cal.get(Calendar.MONTH);
-                    int date = cal.get(Calendar.DATE);
-
-                    String day = "", Month = "";
-                    if (hour == 0 && ampm == 1) {
-                        hour = 12;
-                    }
-                    //AM PM
-                    if (ampm == 1) {
-                        day = "PM";
-                    } else {
-                        day = "AM";
-                    }
-
-                    //MONTH
-                    if (month == 0) {
-                        Month = "January";
-                    } else if (month == 1) {
-                        Month = "February";
-                    } else if (month == 2) {
-                        Month = "March";
-                    } else if (month == 3) {
-                        Month = "April";
-                    } else if (month == 4) {
-                        Month = "May";
-                    } else if (month == 5) {
-                        Month = "June";
-                    } else if (month == 6) {
-                        Month = "July";
-                    } else if (month == 7) {
-                        Month = "August";
-                    } else if (month == 8) {
-                        Month = "September";
-                    } else if (month == 9) {
-                        Month = "October";
-                    } else if (month == 10) {
-                        Month = "November";
-                    } else if (month == 11) {
-                        Month = "December";
-                    }
-                    String clock = hour + ":" + min + ":" + sec + " ";
-                    String today = year + " " + Month + " " + date;
-
-                    clockss7.setText(clock);
-                    dayss7.setText(day);
-                    yearss7.setText(String.valueOf(year));
-                    Monthss7.setText(String.valueOf(Month));
-                    datess7.setText(String.valueOf(date));
-                }
-            }
-        }.start();
-        
     }
 
-    public void setfullscreen() {
+    public static boolean validateName(String txt) {
+
+    String validate = "^[\\p{L} .'-]+$";
+    Pattern pattern = Pattern.compile(validate,Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(txt);
+    return matcher.find();
+
+}
+    public static boolean validateNIC(String nic) {
+    
+    if(!(nic.trim().matches("^[0-9]{9}[vV]$")))
+{
+    return false;
+} 
+
+    return true;
+}
+  
+    public static boolean validatePhone(String phone) {
+    // Check if length is 10
+    int length = phone.length();
+    System.out.println(length);
+    if (length != 10) {
+        return false;
+    }
+    // Check first 9 characters are digits
+    for (int i = 0; i < length-1; i++) {
+        char currentChar = phone.charAt(i);
+        if (Character.isDigit(currentChar))
+        {
+            if (currentChar < '0' || '9' < currentChar) {
+            return false;
+        }
+    } else 
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+    
+    
+      public void setfullscreen() { //screen adjustment function
 
         this.setResizable(false);
 
@@ -118,8 +96,8 @@ public class selection extends javax.swing.JFrame {
         int xsize = (int) kit.getScreenSize().getWidth();
         int ysize = (int) kit.getScreenSize().getHeight();
 
-        int x = xsize;
-        int y = ysize;
+        int x = xsize/2;
+        int y = ysize/2;
 
         this.setSize(x, y);//set size
 
@@ -134,6 +112,23 @@ public class selection extends javax.swing.JFrame {
         this.setLocation(locationx, locationy);
 
     }
+    public boolean validateEmptyFields ()
+    {
+         boolean fieldOne = jTextField1.getText().isEmpty();
+         boolean fieldTwo = jTextField2.getText().isEmpty();
+         boolean fieldThree = jTextField3.getText().isEmpty();
+         boolean fieldFour = jTextField4.getText().isEmpty();
+         
+         if (fieldOne == true || fieldTwo == true || fieldThree == true || fieldFour == true)
+         {
+             return true;
+         } 
+         
+         return false;
+    }
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,36 +159,47 @@ public class selection extends javax.swing.JFrame {
         hallR = new javax.swing.JComboBox<>();
         timeR = new javax.swing.JComboBox<>();
         dateR = new com.toedter.calendar.JDateChooser();
-        Monthss7 = new javax.swing.JLabel();
-        datess7 = new javax.swing.JLabel();
-        yearss7 = new javax.swing.JLabel();
-        clockss7 = new javax.swing.JLabel();
-        dayss7 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("   Customer Information and reservation   ");
 
+        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Name   ");
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("NIC");
 
+        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("telephone");
 
+        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("address");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,14 +207,19 @@ public class selection extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setText(" Customer ID");
 
-        jButton3.setText("clear");
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/reset.png"))); // NOI18N
+        jButton3.setText("Reset");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        regCusId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -228,17 +239,17 @@ public class selection extends javax.swing.JFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(124, 124, 124)
                         .addComponent(jLabel13)
-                        .addGap(48, 48, 48)
+                        .addGap(65, 65, 65)
                         .addComponent(regCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(174, 174, 174)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(137, 137, 137))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(173, 173, 173))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,10 +260,11 @@ public class selection extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)
-                        .addComponent(regCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(regCusId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)))
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -262,7 +274,7 @@ public class selection extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton3))
@@ -271,20 +283,27 @@ public class selection extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("   register customer    ", jPanel2);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Customer ID");
 
+        cusR2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cusR2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cusR2ActionPerformed(evt);
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Hall ID");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Date");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("Time");
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/add.png"))); // NOI18N
         jButton2.setText("Add");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +311,8 @@ public class selection extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/reset.png"))); // NOI18N
         jButton4.setText("clear");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +320,7 @@ public class selection extends javax.swing.JFrame {
             }
         });
 
+        hallR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         hallR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Hall", "01", "02", " " }));
         hallR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,61 +328,63 @@ public class selection extends javax.swing.JFrame {
             }
         });
 
+        timeR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timeR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Time", "Morning", "Night" }));
 
         dateR.setDateFormatString("yyyy-MM-dd");
+        dateR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(75, 75, 75)
-                .addComponent(cusR2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
                 .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(dateR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hallR, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(timeR, 0, 135, Short.MAX_VALUE))
-                .addGap(161, 161, 161))
+                .addComponent(jLabel9)
+                .addGap(38, 38, 38)
+                .addComponent(cusR2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(timeR, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dateR, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(133, 133, 133)
+                        .addComponent(hallR, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(108, 108, 108))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jButton2)
-                .addGap(54, 54, 54)
-                .addComponent(jButton4)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(hallR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(hallR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(cusR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
+                            .addComponent(cusR2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)))
+                    .addComponent(dateR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(timeR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
@@ -369,66 +393,42 @@ public class selection extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("   Hall Booking    ", jPanel1);
 
-        Monthss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        Monthss7.setText("month");
-
-        datess7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
-        datess7.setText("date");
-
-        yearss7.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
-        yearss7.setText("year");
-
-        clockss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        clockss7.setText("jLabel40");
-
-        dayss7.setFont(new java.awt.Font("DS-Digital", 0, 36)); // NOI18N
-        dayss7.setText("AM");
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/images/back.png"))); // NOI18N
+        jButton5.setText("Back to Main");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(clockss7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dayss7)
-                        .addGap(27, 27, 27))
+                        .addGap(291, 291, 291)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(yearss7)
-                        .addGap(18, 18, 18)
-                        .addComponent(Monthss7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(datess7))))
+                        .addGap(76, 76, 76)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(422, 422, 422)
+                        .addComponent(jButton5)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1)
-                        .addGap(53, 53, 53))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clockss7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dayss7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(yearss7)
-                            .addComponent(Monthss7)
-                            .addComponent(datess7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(34, 34, 34)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -443,7 +443,72 @@ public class selection extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        String cname = jTextField1.getText();
+        String cnic = jTextField2.getText();
+        String cphone = jTextField3.getText();
+        String cadd = jTextField4.getText();
+        
+        System.out.println(cname+" "+cnic+" "+cphone+" "+cadd);
+        
+        boolean answer = validateName(cname);
+        System.out.println("answer"+answer);
+        
+        boolean answer2 = validateNIC(cnic);
+        System.out.println(answer2);
+        boolean answer3 = validatePhone(cphone);
+        System.out.println(answer3);
+        boolean answer4 = validateEmptyFields ();
+        System.out.println(answer4);
+        
+      if ( answer == false)
+       {
+          JOptionPane.showMessageDialog(null,"Invalid name \n Re-enter!!!","warning",JOptionPane.WARNING_MESSAGE);
+          jTextField1.setText("");
+       }
+        
+        if ( answer2 == false )
+        {
+            JOptionPane.showMessageDialog(null,"Invalid NIC number \n Re-enter!!!","warning",JOptionPane.WARNING_MESSAGE);
+            jTextField2.setText("");
+        } 
+        
+        if ( answer3 == false)
+        {
+            JOptionPane.showMessageDialog(null,"Invalid phone number \n Re-enter!!!","warning",JOptionPane.WARNING_MESSAGE);
+            jTextField3.setText("");
+        }
+        
+        if ( answer4 == true)
+        {
+                    
+            JOptionPane.showMessageDialog(null,"Empty field exist \n Re-enter!!!","warning",JOptionPane.WARNING_MESSAGE);
+       
+        } else { 
+        
+        try {
+            int cid = 0;
+            String sql = "insert into customer (Name,Address,Phone,NICPP) values ('"+ cname +"','"+ cadd +"','"+ cphone +"','"+ cnic +"')";
+            pst = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            pst.executeUpdate();
+            rs = pst.getGeneratedKeys();
+            
+            if (rs.next())
+            {
+                cid = rs.getInt(1);
+            }
+            
+            
+            regCusId.setText(String.valueOf(cid));
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+       
+            } catch (Exception e) {
+            }
+    }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -500,12 +565,27 @@ public class selection extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        regCusId.setText("");
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cusR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cusR2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cusR2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+        mainReception mr1 = new mainReception();
+        mr1.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,6 +613,9 @@ public class selection extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(selection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -543,17 +626,14 @@ public class selection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Monthss7;
-    private javax.swing.JLabel clockss7;
     private javax.swing.JTextField cusR2;
     private com.toedter.calendar.JDateChooser dateR;
-    private javax.swing.JLabel datess7;
-    private javax.swing.JLabel dayss7;
     private javax.swing.JComboBox<String> hallR;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -573,6 +653,5 @@ public class selection extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel regCusId;
     private javax.swing.JComboBox<String> timeR;
-    private javax.swing.JLabel yearss7;
     // End of variables declaration//GEN-END:variables
 }
